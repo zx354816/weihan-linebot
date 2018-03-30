@@ -1,0 +1,7 @@
+要先下載git
+cmd要先切到資料夾的位置
+git init
+heroku git:remote -a weihanlinebot
+git add .
+git commit -am "meke it better"
+git push heroku master
