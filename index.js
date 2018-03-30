@@ -66,7 +66,9 @@ var myDictionary = {
 	'哪一間鹹酥雞最好吃':'巧味',
 	'我覺得可以':'貓貓真的很嚴格',
 	'對':'對什麼對',
-	'嘻嘻':'嘻三小'
+	'嘻嘻':'嘻三小',
+	'扭蛋':'沒有蛋',
+	'你在說一次':'沒有就是沒有'
 	
 };
 var allDictionary = [];
@@ -170,7 +172,7 @@ bot.on('message', function (event) {
 		*/
 		else if(event.message.text.match('姿勢:')!=null || event.message.text.match('姿勢：')!=null){
 			var newString = event.message.text.substring(3);
-			var ListLength = posze.length;
+			var ListLength = pose.length;
 			event.reply(newString+pose[limitRandomNumber(0,ListLength-1)]).then(function (data) {
                 // success 
                 console.log(msg);
