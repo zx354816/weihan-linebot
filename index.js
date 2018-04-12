@@ -191,6 +191,51 @@ bot.on('message', function (event) {
                 // error 
                 console.log('error');
             });
+		}else if(event.message.text.match('教你姿勢:')!=null || event.message.text.match('教你姿勢：')!=null){
+			
+			var newString = event.message.text.substring(5);
+			if(pose.indexOf(newString)==-1){
+
+				pose.push(newString);
+				event.reply('我學會'+newString+'了！').then(function (data) {
+					// success 
+				    console.log(msg);
+					}).catch(function (error) {
+				    // error 
+				    console.log('error');
+					});
+			}else{
+					event.reply('我已經會了啦').then(function (data) {
+				    // success 
+					console.log(msg);
+					}).catch(function (error) {
+					// error 
+					console.log('error');
+					});
+			}
+		}else if (event.message.text.match('忘記姿勢:') != null || event.message.text.match('忘記姿勢：') != null) {
+
+			var newString = event.message.text.substring(5);
+			if(pose.indexOf(newString)!=-1){
+				
+				var newnewString = pose.splice(pose.indexOf(newString),1);
+
+				event.reply('已忘記'+newnewString+).then(function (data) {
+                // success 
+                console.log(msg);
+				}).catch(function (error) {
+                // error 
+                console.log('error');
+				});
+			}else{
+				event.reply('我還不會'+newString).then(function (data) {
+                // success 
+                console.log(msg);
+				}).catch(function (error) {
+                // error 
+                console.log('error');
+				});
+			}
 		}
 			
 
