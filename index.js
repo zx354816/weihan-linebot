@@ -207,7 +207,7 @@ bot.on('message', function (event) {
 				    console.log('error');
 					});
 			}else{
-					event.reply('我已經會了啦').then(function (data) {
+					event.reply('我已經會'+newString+'了啦').then(function (data) {
 				    // success 
 					console.log(msg);
 					}).catch(function (error) {
@@ -217,10 +217,11 @@ bot.on('message', function (event) {
 			}
 		}
 		
-		/*先砍掉
+		
 		else if (event.message.text.match('忘記pose:') != null || event.message.text.match('忘記pose：') != null) {
 
 			var newString = event.message.text.substring(7);
+
 			if(pose.indexOf(newString)!=-1){
 				
 				var newnewString = pose.splice(pose.indexOf(newString),1);
