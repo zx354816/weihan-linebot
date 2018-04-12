@@ -222,15 +222,9 @@ bot.on('message', function (event) {
 				
 				var newnewString = pose.splice(pose.indexOf(newString),1);
 
-				event.reply('已忘記'+newnewString+'。').then(function (data) {
-                // success 
-                console.log(msg);
-				}).catch(function (error) {
-                // error 
-                console.log('error');
-				});
+				event.reply('我忘記'+newnewString+'了..');
 			}else{
-				event.reply('我不會'+newnewString+'辣').then(function (data) {
+				event.reply('我不會'+newString+'辣').then(function (data) {
                 // success 
                 console.log(msg);
 				}).catch(function (error) {
