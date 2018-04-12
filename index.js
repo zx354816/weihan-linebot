@@ -72,7 +72,6 @@ var myDictionary = {
 	
 };
 var allDictionary = [];
-var allPose = [];
 var msg;
 
 
@@ -242,18 +241,14 @@ bot.on('message', function (event) {
 			console.log('error');
 			});
 		}else if (event.message.text == 'Admin3') {
-			allPose.length =0;
-			for(var key in pose){
-				 allDictionary.push('\''+key+'\':\''+pose[key]+'\''); //把字典變成我要的格式
-			}
-
-			event.reply(allPose.toString()).then(function (data) {
-			// success 
-			console.log(msg);
-			}).catch(function (error) {
-			// error 
-			console.log('error');
-			});
+			var allPose = '\''+pose.join('\',\'').toString()+'\''; //把全部的餐廳變成我要的格式
+			event.reply(allPose).then(function (data) {
+                // success 
+                console.log(msg);
+            }).catch(function (error) {
+                // error 
+                console.log('error');
+            });
 		}
 
 		/*
