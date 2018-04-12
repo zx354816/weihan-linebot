@@ -217,7 +217,7 @@ bot.on('message', function (event) {
 			}
 		}
 		
-		
+		/*先砍掉
 		else if (event.message.text.match('忘記pose:') != null || event.message.text.match('忘記pose：') != null) {
 
 			var newString = event.message.text.substring(7);
