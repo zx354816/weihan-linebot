@@ -180,6 +180,17 @@ bot.on('message', function (event) {
                 // error 
                 console.log('error');
             });
+		}else if (event.message.text == '全部的姿勢' || event.message.text == '所有姿勢') {
+			
+			var _all = pose.join('、').toString();
+
+			event.reply(_all).then(function (data) {
+                // success 
+                console.log(msg);
+            }).catch(function (error) {
+                // error 
+                console.log('error');
+            });
 		}
 			
 
@@ -215,7 +226,7 @@ bot.on('message', function (event) {
 
 			
 		/*
-		 看全部的值，現在有：餐廳、字典
+		 看全部的值，現在有：餐廳、字典、姿勢
 		*/
 		else if(event.message.text == 'Admin'){
 			var ForMeToTestRestaurant = '\''+FoodList.join('\',\'').toString()+'\''; //把全部的餐廳變成我要的格式
@@ -240,8 +251,9 @@ bot.on('message', function (event) {
 			// error 
 			console.log('error');
 			});
-		}else if (event.message.text == 'Admin3') {
-			var allPose = '\''+pose.join('\',\'').toString()+'\''; //把全部的餐廳變成我要的格式
+		}
+		else if (event.message.text == 'Admin3') {
+			var allPose = '\''+pose.join('\',\'').toString()+'\''; //把全部的姿勢變成我要的格式
 			event.reply(allPose).then(function (data) {
                 // success 
                 console.log(msg);
