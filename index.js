@@ -192,7 +192,6 @@ bot.on('message', function (event) {
                 console.log('error');
             });
 		}
-		
 		else if(event.message.text.match('教你pose:')!=null || event.message.text.match('教你pose：')!=null){
 			
 			var newString = event.message.text.substring(7);
@@ -217,7 +216,7 @@ bot.on('message', function (event) {
 			}
 		}
 		
-		
+		/*
 		else if (event.message.text.match('忘記pose:') != null || event.message.text.match('忘記pose：') != null) {
 
 			var newString = event.message.text.substring(7);
