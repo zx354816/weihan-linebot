@@ -191,7 +191,9 @@ bot.on('message', function (event) {
                 // error 
                 console.log('error');
             });
-		}else if(event.message.text.match('教你姿勢:')!=null || event.message.text.match('教你姿勢：')!=null){
+		}
+		
+		else if(event.message.text.match('教你姿勢:')!=null || event.message.text.match('教你姿勢：')!=null){
 			
 			var newString = event.message.text.substring(5);
 			if(pose.indexOf(newString)==-1){
@@ -213,7 +215,10 @@ bot.on('message', function (event) {
 					console.log('error');
 					});
 			}
-		}else if (event.message.text.match('忘記姿勢:') != null || event.message.text.match('忘記姿勢：') != null) {
+		}
+		/*
+
+		else if (event.message.text.match('忘記姿勢:') != null || event.message.text.match('忘記姿勢：') != null) {
 
 			var newString = event.message.text.substring(5);
 			if(pose.indexOf(newString)!=-1){
@@ -237,7 +242,7 @@ bot.on('message', function (event) {
 				});
 			}
 		}
-			
+		*/	
 
 		/*
 		 教說話的地方
