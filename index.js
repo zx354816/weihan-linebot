@@ -72,6 +72,7 @@ var myDictionary = {
 	
 };
 var allDictionary = [];
+var allPose = [];
 var msg;
 
 
@@ -96,7 +97,7 @@ bot.on('message', function (event) {
         /*
 	     跟餐廳有關的操作：隨機、新增、移除、查看
 	    */
-		else if(event.message.text == '今天要吃什麼' || event.message.text == '今天要吃甚麼' || event.message.text == '今天要吃啥' || event.message.text == '今天吃什麼' || event.message.text == '今天吃啥' || event.message.text.match('吃什麼')!=null){
+		else if(event.message.text.match('吃什麼')!=null || event.message.text.match('吃啥')!=null || event.message.text.match('吃甚麼')!=null){
 			var ListLength = FoodList.length;
 			event.reply(FoodList[limitRandomNumber(0,ListLength-1)]).then(function (data) {
                 // success 
@@ -234,6 +235,19 @@ bot.on('message', function (event) {
 			}
 
 			event.reply(allDictionary.toString()).then(function (data) {
+			// success 
+			console.log(msg);
+			}).catch(function (error) {
+			// error 
+			console.log('error');
+			});
+		}else if (event.message.text == 'Admin3') {
+			allPose.length =0;
+			for(var key in pose){
+				 allDictionary.push('\''+key+'\':\''+pose[key]+'\''); //把字典變成我要的格式
+			}
+
+			event.reply(allPose.toString()).then(function (data) {
 			// success 
 			console.log(msg);
 			}).catch(function (error) {
