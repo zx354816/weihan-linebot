@@ -180,7 +180,7 @@ bot.on('message', function (event) {
                 // error 
                 console.log('error');
             });
-		}else if (event.message.text == '全部的pose' || event.message.text == '所有pose') {
+		}else if (event.message.text == '全部的姿勢' || event.message.text == '所有姿勢') {
 			
 			var _all = pose.join('、').toString();
 
@@ -217,7 +217,7 @@ bot.on('message', function (event) {
 			}
 		}
 		
-
+		/*
 		else if (event.message.text.match('忘記pose:') != null || event.message.text.match('忘記pose：') != null) {
 
 			var newString = event.message.text.substring(5);
