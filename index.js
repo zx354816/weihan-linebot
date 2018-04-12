@@ -215,17 +215,14 @@ bot.on('message', function (event) {
 					});
 			}
 		}
-		
-		/*
 		else if (event.message.text.match('忘記pose:') != null || event.message.text.match('忘記pose：') != null) {
 
 			var newString = event.message.text.substring(7);
-
 			if(pose.indexOf(newString)!=-1){
 				
 				var newnewString = pose.splice(pose.indexOf(newString),1);
 
-				event.reply('已忘記'+newnewString+).then(function (data) {
+				event.reply('已忘記'+newnewString+'。').then(function (data) {
                 // success 
                 console.log(msg);
 				}).catch(function (error) {
@@ -233,7 +230,7 @@ bot.on('message', function (event) {
                 console.log('error');
 				});
 			}else{
-				event.reply('我還不會'+newString).then(function (data) {
+				event.reply('我不會'+newnewString+'辣').then(function (data) {
                 // success 
                 console.log(msg);
 				}).catch(function (error) {
@@ -242,6 +239,7 @@ bot.on('message', function (event) {
 				});
 			}
 		}
+		
 			
 
 		/*
@@ -274,7 +272,6 @@ bot.on('message', function (event) {
 			}
 		}
 
-			
 		/*
 		 看全部的值，現在有：餐廳、字典、姿勢
 		*/
