@@ -195,7 +195,7 @@ bot.on('message', function (event) {
 		
 		else if(event.message.text.match('教你pose:')!=null || event.message.text.match('教你pose：')!=null){
 			
-			var newString = event.message.text.substring(9);
+			var newString = event.message.text.substring(7);
 			if(pose.indexOf(newString)==-1){
 
 				pose.push(newString);
@@ -220,7 +220,7 @@ bot.on('message', function (event) {
 		
 		else if (event.message.text.match('忘記pose:') != null || event.message.text.match('忘記pose：') != null) {
 
-			var newString = event.message.text.substring(9);
+			var newString = event.message.text.substring(7);
 			if(pose.indexOf(newString)!=-1){
 				
 				var newnewString = pose.splice(pose.indexOf(newString),1);
