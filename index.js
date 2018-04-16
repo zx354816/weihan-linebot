@@ -173,7 +173,7 @@ bot.on('message', function (event) {
 
 				event.reply('我忘記怎麼'+newnewString+'了......');
 			}else{
-				event.reply('我不會'+newString+'辣');
+				event.reply('我還不會'+newString+'辣');
 			}
 		}
 		
