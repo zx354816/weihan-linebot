@@ -140,7 +140,7 @@ bot.on('message', function (event) {
 		}
 
 		/*
-		 姿勢
+		 跟姿勢有關的操作：隨機、新增、移除、查看
 		*/
 		else if(event.message.text.match('姿勢:')!=null || event.message.text.match('姿勢：')!=null){
 			var newString = event.message.text.substring(3);
@@ -179,23 +179,6 @@ bot.on('message', function (event) {
 		
 			
 
-		/*
-		 教說話的地方
-		*/
-		else if(event.message.text.match('教你說話:')!=null || event.message.text.match('教你說話：')!=null || event.message.text.match('教你講話：')!=null || event.message.text.match('教你講話:')!=null){
-			var newString = event.message.text.substring(5);
-			var index = newString.indexOf('；');
-			var say = newString.substring(index+1);
-			var remember = newString.substring(0,index);
-			if(index == -1){
-				event.reply('格式錯誤。');
-			
-			}else{
-			
-				myDictionary[remember] = say;
-				event.reply('學會了。');
-			}
-		}
 
 		/*
 		 看全部的值，現在有：餐廳、字典、姿勢
@@ -217,6 +200,23 @@ bot.on('message', function (event) {
 			event.reply(allPose);
 		}
 
+		/*
+		 教說話的地方
+		*/
+		else if(event.message.text.match('教你說話:')!=null || event.message.text.match('教你說話：')!=null || event.message.text.match('教你講話：')!=null || event.message.text.match('教你講話:')!=null){
+			var newString = event.message.text.substring(5);
+			var index = newString.indexOf('；');
+			var say = newString.substring(index+1);
+			var remember = newString.substring(0,index);
+			if(index == -1){
+				event.reply('格式錯誤。');
+			
+			}else{
+			
+				myDictionary[remember] = say;
+				event.reply('學會了。');
+			}
+		}
 		/*
 		 教說話顯示的地方
 		*/
