@@ -112,24 +112,12 @@ bot.on('message', function (event) {
 			var newString = event.message.text.substring(5);
 			if(FoodList.indexOf(newString)==-1){
 
-				FoodList.push(newString);
-				event.reply('已新增'+newString+'。').then(function (data) {
-					// success 
-				    console.log(msg);
-					}).catch(function (error) {
-				    // error 
-				    console.log('error');
-					});
+					FoodList.push(newString);
+					event.reply('已新增'+newString+'。');
 				}
-				else{
-					event.reply('裡面已經有這個了啦').then(function (data) {
-				    // success 
-					console.log(msg);
-					}).catch(function (error) {
-					// error 
-					console.log('error');
-					});
-			}
+			else{
+					event.reply('裡面已經有這個了啦');
+				}
 		}
 		else if (event.message.text.match('移除餐廳:') != null || event.message.text.match('移除餐廳：') != null) {
 
@@ -138,34 +126,17 @@ bot.on('message', function (event) {
 				
 				var newnewString = FoodList.splice(FoodList.indexOf(newString),1);
 
-				event.reply('已移除'+newnewString+'。').then(function (data) {
-                // success 
-                console.log(msg);
-				}).catch(function (error) {
-                // error 
-                console.log('error');
-				});
+				event.reply('已移除'+newnewString+'。');
+
 			}else{
-				event.reply('裡面沒有這間啦').then(function (data) {
-                // success 
-                console.log(msg);
-				}).catch(function (error) {
-                // error 
-                console.log('error');
-				});
+				event.reply('裡面沒有這間啦');
 			}
 		}
 		else if (event.message.text == '全部的餐廳' || event.message.text == '所有餐廳') {
 			
 			var _all = FoodList.join('、').toString();
 
-			event.reply(_all).then(function (data) {
-                // success 
-                console.log(msg);
-            }).catch(function (error) {
-                // error 
-                console.log('error');
-            });
+			event.reply(_all);
 		}
 
 		/*
@@ -174,24 +145,13 @@ bot.on('message', function (event) {
 		else if(event.message.text.match('姿勢:')!=null || event.message.text.match('姿勢：')!=null){
 			var newString = event.message.text.substring(3);
 			var ListLength = pose.length;
-			event.reply(newString+pose[limitRandomNumber(0,ListLength-1)]).then(function (data) {
-                // success 
-                console.log(msg);
-            }).catch(function (error) {
-                // error 
-                console.log('error');
-            });
+			event.reply(newString+pose[limitRandomNumber(0,ListLength-1)]);
+
 		}else if (event.message.text == '全部的姿勢' || event.message.text == '所有姿勢') {
 			
 			var _all = pose.join('、').toString();
 
-			event.reply(_all).then(function (data) {
-                // success 
-                console.log(msg);
-            }).catch(function (error) {
-                // error 
-                console.log('error');
-            });
+			event.reply(_all);
 		}
 		else if(event.message.text.match('教你pose:')!=null || event.message.text.match('教你pose：')!=null){
 			
@@ -199,21 +159,9 @@ bot.on('message', function (event) {
 			if(pose.indexOf(newString)==-1){
 
 				pose.push(newString);
-				event.reply('我學會'+newString+'了！').then(function (data) {
-					// success 
-				    console.log(msg);
-					}).catch(function (error) {
-				    // error 
-				    console.log('error');
-					});
+				event.reply('我學會'+newString+'了！');
 			}else{
-					event.reply('我已經會'+newString+'了啦').then(function (data) {
-				    // success 
-					console.log(msg);
-					}).catch(function (error) {
-					// error 
-					console.log('error');
-					});
+					event.reply('我已經會'+newString+'了啦');
 			}
 		}
 		else if (event.message.text.match('忘記pose:') != null || event.message.text.match('忘記pose：') != null) {
@@ -223,15 +171,9 @@ bot.on('message', function (event) {
 				
 				var newnewString = pose.splice(pose.indexOf(newString),1);
 
-				event.reply('我忘記'+newnewString+'了..');
+				event.reply('我忘記怎麼'+newnewString+'了......');
 			}else{
-				event.reply('我不會'+newString+'辣').then(function (data) {
-                // success 
-                console.log(msg);
-				}).catch(function (error) {
-                // error 
-                console.log('error');
-				});
+				event.reply('我不會'+newString+'辣');
 			}
 		}
 		
@@ -246,24 +188,12 @@ bot.on('message', function (event) {
 			var say = newString.substring(index+1);
 			var remember = newString.substring(0,index);
 			if(index == -1){
-				event.reply('格式錯誤。').then(function (data) {
-                // success 
-                console.log(msg);
-				}).catch(function (error) {
-                // error 
-                console.log('error');
-				 });
+				event.reply('格式錯誤。');
 			
 			}else{
 			
 				myDictionary[remember] = say;
-				event.reply('學會了。').then(function (data) {
-                // success 
-                console.log(msg);
-				}).catch(function (error) {
-                // error 
-                console.log('error');
-				});
+				event.reply('學會了。');
 			}
 		}
 
@@ -272,13 +202,7 @@ bot.on('message', function (event) {
 		*/
 		else if(event.message.text == 'Admin'){
 			var ForMeToTestRestaurant = '\''+FoodList.join('\',\'').toString()+'\''; //把全部的餐廳變成我要的格式
-			event.reply(ForMeToTestRestaurant).then(function (data) {
-                // success 
-                console.log(msg);
-            }).catch(function (error) {
-                // error 
-                console.log('error');
-            });
+			event.reply(ForMeToTestRestaurant);
 		}
 		else if (event.message.text == 'Admin2') {
 			allDictionary.length =0;
@@ -286,23 +210,11 @@ bot.on('message', function (event) {
 				 allDictionary.push('\''+key+'\':\''+myDictionary[key]+'\''); //把字典變成我要的格式
 			}
 
-			event.reply(allDictionary.toString()).then(function (data) {
-			// success 
-			console.log(msg);
-			}).catch(function (error) {
-			// error 
-			console.log('error');
-			});
+			event.reply(allDictionary.toString());
 		}
 		else if (event.message.text == 'Admin3') {
 			var allPose = '\''+pose.join('\',\'').toString()+'\''; //把全部的姿勢變成我要的格式
-			event.reply(allPose).then(function (data) {
-                // success 
-                console.log(msg);
-            }).catch(function (error) {
-                // error 
-                console.log('error');
-            });
+			event.reply(allPose);
 		}
 
 		/*
@@ -312,13 +224,7 @@ bot.on('message', function (event) {
 			for(var key in myDictionary){
 				if(key == event.message.text){
         
-				    event.reply(myDictionary[key]+'').then(function (data) {
-					 // success 
-						console.log(msg);
-					}).catch(function (error) {
-				     // error 
-			           console.log('error');
-					});
+				    event.reply(myDictionary[key]+'');
 				}
 			}
 		}
