@@ -3,7 +3,7 @@ const express = require('express');
 const request = require('request')
 const url = 'https://www.ptt.cc/bbs/LoL/index.html'
 request(url, (err, res, body) => {
- res.send(body);
+	res.send(body);
 })
 const bot = linebot({
 	channelId: process.env.CHANNEL_ID,
