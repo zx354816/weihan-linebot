@@ -1,6 +1,10 @@
 ﻿const linebot = require('linebot');
 const express = require('express');
-
+const request = require('request')
+const url = 'https://www.ptt.cc/bbs/LoL/index.html'
+request(url, (err, res, body) => {
+  res.send(body);
+})
 const bot = linebot({
 	channelId: process.env.CHANNEL_ID,
 	channelSecret: process.env.CHANNEL_SECRET,
@@ -40,7 +44,7 @@ var FoodList =['德記','巧味','汕頭意麵','歡歡','來來軒','影印店�
 '龍門客棧','麥當勞','肯德基','拿坡里','新永豆','黑永豆','舊永豆','胖老爹',
 '海之蚵','佐賀','飯鋪子','紅豆','福萱','烏龍大王','響樂','浪人鐵板燒','九龍城',
 '鴨香麵','八方雲集','老先覺','饌喜堂','聖明自助餐','嘉鄰快餐','吐司森林','飯尾鰭',
-'海之柯','再抽一次','貢龜','朝祥煮','Morning House','7-11','小管炒飯','海膽炒蛋',];
+'海之柯','再抽一次','貢龜','朝祥煮','Morning House','7-11','小管炒飯','海膽炒蛋'];
 var pose = ['69式','傳教式','火車便當','背入式','Oop式','騎乘式','活塞式','口交','毒龍鑽','彎腰下狗式'];
 
 
@@ -62,14 +66,16 @@ var myDictionary = {
 	'wow':'AAA',
 	'兇':'我看過很兇的，但沒看過這麼兇的',
 	'貓貓':'大口袋',
+	'兇':'我看過很兇的，但沒看過這麼兇的',
 	'哪一間鹹酥雞最好吃':'巧味',
+	'我覺得可以':'貓貓真的很嚴格',
 	'對':'對什麼對',
 	'嘻嘻':'嘻三小',
 	'扭蛋':'沒有蛋',
 	'你在說一次':'沒有就是沒有',
 	'好':'好什麼好',
 	'幹':'留點口德啦幹你娘機掰'
-
+	'Hello':'World!',
 	
 };
 var allDictionary = [];
@@ -97,7 +103,7 @@ bot.on('message', function (event) {
         /*
 	     跟餐廳有關的操作：隨機、新增、移除、查看
 	    */
-		else if(event.message.text.match('吃什麼')!=null || event.message.text.match('吃啥')!=null || event.message.text.match('吃甚麼')!=null){
+		else if(event.message.text == '今天要吃什麼' || event.message.text == '今天要吃甚麼' || event.message.text == '今天要吃啥' || event.message.text == '今天吃什麼' || event.message.text == '今天吃啥' || event.message.text.match('吃什麼')!=null){
 			var ListLength = FoodList.length;
 			event.reply(FoodList[limitRandomNumber(0,ListLength-1)]).then(function (data) {
                 // success 
@@ -112,12 +118,24 @@ bot.on('message', function (event) {
 			var newString = event.message.text.substring(5);
 			if(FoodList.indexOf(newString)==-1){
 
-					FoodList.push(newString);
-					event.reply('已新增'+newString+'。');
+				FoodList.push(newString);
+				event.reply('已新增'+newString+'。').then(function (data) {
+					// success 
+				    console.log(msg);
+					}).catch(function (error) {
+				    // error 
+				    console.log('error');
+					});
 				}
-			else{
-					event.reply('裡面已經有這個了啦');
-				}
+				else{
+					event.reply('裡面已經有這個了啦').then(function (data) {
+				    // success 
+					console.log(msg);
+					}).catch(function (error) {
+					// error 
+					console.log('error');
+					});
+			}
 		}
 		else if (event.message.text.match('移除餐廳:') != null || event.message.text.match('移除餐廳：') != null) {
 
@@ -126,79 +144,51 @@ bot.on('message', function (event) {
 				
 				var newnewString = FoodList.splice(FoodList.indexOf(newString),1);
 
-				event.reply('已移除'+newnewString+'。');
-
+				event.reply('已移除'+newnewString+'。').then(function (data) {
+                // success 
+                console.log(msg);
+				}).catch(function (error) {
+                // error 
+                console.log('error');
+				});
 			}else{
-				event.reply('裡面沒有這間啦');
+				event.reply('裡面沒有這間啦').then(function (data) {
+                // success 
+                console.log(msg);
+				}).catch(function (error) {
+                // error 
+                console.log('error');
+				});
 			}
 		}
 		else if (event.message.text == '全部的餐廳' || event.message.text == '所有餐廳') {
 			
 			var _all = FoodList.join('、').toString();
 
-			event.reply(_all);
+			event.reply(_all).then(function (data) {
+                // success 
+                console.log(msg);
+            }).catch(function (error) {
+                // error 
+                console.log('error');
+            });
 		}
 
 		/*
-		 跟姿勢有關的操作：隨機、新增、移除、查看
+		 姿勢
 		*/
 		else if(event.message.text.match('姿勢:')!=null || event.message.text.match('姿勢：')!=null){
 			var newString = event.message.text.substring(3);
-			var ListLength = pose.length;
-			event.reply(newString+pose[limitRandomNumber(0,ListLength-1)]);
-
-		}else if (event.message.text == '全部的姿勢' || event.message.text == '所有姿勢') {
+			var ListLength = posze.length;
+			event.reply(newString+pose[limitRandomNumber(0,ListLength-1)]).then(function (data) {
+                // success 
+                console.log(msg);
+            }).catch(function (error) {
+                // error 
+                console.log('error');
+            });
+		}
 			
-			var _all = pose.join('、').toString();
-
-			event.reply(_all);
-		}
-		else if(event.message.text.match('教你pose:')!=null || event.message.text.match('教你pose：')!=null){
-			
-			var newString = event.message.text.substring(7);
-			if(pose.indexOf(newString)==-1){
-
-				pose.push(newString);
-				event.reply('我學會'+newString+'了！');
-			}else{
-					event.reply('我已經會'+newString+'了啦');
-			}
-		}
-		else if (event.message.text.match('忘記pose:') != null || event.message.text.match('忘記pose：') != null) {
-
-			var newString = event.message.text.substring(7);
-			if(pose.indexOf(newString)!=-1){
-				
-				var newnewString = pose.splice(pose.indexOf(newString),1);
-
-				event.reply('我忘記怎麼'+newnewString+'了......');
-			}else{
-				event.reply('= =我還不會'+newString+'辣');
-			}
-		}
-		
-			
-
-
-		/*
-		 看全部的值，現在有：餐廳、字典、姿勢
-		*/
-		else if(event.message.text == 'Admin'){
-			var ForMeToTestRestaurant = '\''+FoodList.join('\',\'').toString()+'\''; //把全部的餐廳變成我要的格式
-			event.reply(ForMeToTestRestaurant);
-		}
-		else if (event.message.text == 'Admin2') {
-			allDictionary.length =0;
-			for(var key in myDictionary){
-				 allDictionary.push('\''+key+'\':\''+myDictionary[key]+'\''); //把字典變成我要的格式
-			}
-
-			event.reply(allDictionary.toString());
-		}
-		else if (event.message.text == 'Admin3') {
-			var allPose = '\''+pose.join('\',\'').toString()+'\''; //把全部的姿勢變成我要的格式
-			event.reply(allPose);
-		}
 
 		/*
 		 教說話的地方
@@ -209,14 +199,56 @@ bot.on('message', function (event) {
 			var say = newString.substring(index+1);
 			var remember = newString.substring(0,index);
 			if(index == -1){
-				event.reply('格式錯誤。');
+				event.reply('格式錯誤。').then(function (data) {
+                // success 
+                console.log(msg);
+				}).catch(function (error) {
+                // error 
+                console.log('error');
+				 });
 			
 			}else{
 			
 				myDictionary[remember] = say;
-				event.reply('學會了。');
+				event.reply('學會了。').then(function (data) {
+                // success 
+                console.log(msg);
+				}).catch(function (error) {
+                // error 
+                console.log('error');
+				});
 			}
 		}
+
+			
+		/*
+		 看全部的值，現在有：餐廳、字典
+		*/
+		else if(event.message.text == 'Admin'){
+			var ForMeToTestRestaurant = '\''+FoodList.join('\',\'').toString()+'\''; //把全部的餐廳變成我要的格式
+			event.reply(ForMeToTestRestaurant).then(function (data) {
+                // success 
+                console.log(msg);
+            }).catch(function (error) {
+                // error 
+                console.log('error');
+            });
+		}
+		else if (event.message.text == 'Admin2') {
+			allDictionary.length =0;
+			for(var key in myDictionary){
+				 allDictionary.push('\''+key+'\':\''+myDictionary[key]+'\''); //把字典變成我要的格式
+			}
+
+			event.reply(allDictionary.toString()).then(function (data) {
+			// success 
+			console.log(msg);
+			}).catch(function (error) {
+			// error 
+			console.log('error');
+			});
+		}
+
 		/*
 		 教說話顯示的地方
 		*/
@@ -224,7 +256,13 @@ bot.on('message', function (event) {
 			for(var key in myDictionary){
 				if(key == event.message.text){
         
-				    event.reply(myDictionary[key]+'');
+				    event.reply(myDictionary[key]+'').then(function (data) {
+					 // success 
+						console.log(msg);
+					}).catch(function (error) {
+				     // error 
+			           console.log('error');
+					});
 				}
 			}
 		}
