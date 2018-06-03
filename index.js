@@ -104,7 +104,7 @@ bot.on('message', function (event) {
         /*
 	     跟餐廳有關的操作：隨機、新增、移除、查看
 	    */
-		else if(event.message.text == '今天要吃什麼' || event.message.text == '今天要吃甚麼' || event.message.text == '今天要吃啥' || event.message.text == '今天吃什麼' || event.message.text == '今天吃啥' || event.message.text.match('吃什麼') || event.message.text == '吃甚麼'!=null){
+		else if(event.message.text == '今天要吃什麼' || event.message.text == '今天要吃甚麼' || event.message.text == '今天要吃啥' || event.message.text == '今天吃什麼' || event.message.text == '今天吃啥' || event.message.text.match('吃什麼') || event.message.text.match('吃甚麼')!=null){
 			var ListLength = FoodList.length;
 			event.reply(FoodList[limitRandomNumber(0,ListLength-1)]).then(function (data) {
                 // success 
