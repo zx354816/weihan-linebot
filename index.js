@@ -128,11 +128,10 @@ bot.on('message', function (event) {
 			
 		}
 		else if(event.message.text == '地震'){
-			result="";
+			
 			earthquake();
 			event.reply(result+"HI").then(function (data) {
-                // success 
-                console.log(msg);
+                result="";
             }).catch(function (error) {
                 // error 
                 console.log('error');
