@@ -52,7 +52,7 @@ const earthquake = function () {
     }
   });
 };
-
+earthquake();
 
 
 
@@ -128,7 +128,7 @@ bot.on('message', function (event) {
 			
 		}
 		else if(event.message.text == '地震'){
-			result.length=0;
+			
 			earthquake();
 			event.reply(result+"HI").then(function (data) {
                 
@@ -136,6 +136,7 @@ bot.on('message', function (event) {
                 // error 
                 console.log('error');
             });
+			result.length=0;
 			
 		}
         /*
