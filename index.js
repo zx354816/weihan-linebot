@@ -131,12 +131,12 @@ bot.on('message', function (event) {
 			
 			earthquake();
 			event.reply(result+"HI").then(function (data) {
-                result="";
+                
             }).catch(function (error) {
                 // error 
                 console.log('error');
             });
-			
+			result="";
 		}
         /*
 	     跟餐廳有關的操作：隨機、新增、移除、查看
