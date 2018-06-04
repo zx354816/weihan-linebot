@@ -128,7 +128,6 @@ bot.on('message', function (event) {
 			
 		}
 		else if(event.message.text == '地震'){
-			
 			earthquake();
 			event.reply(result+"HI").then(function (data) {
                 
@@ -136,7 +135,7 @@ bot.on('message', function (event) {
                 // error 
                 console.log('error');
             });
-			result="";
+			
 		}
         /*
 	     跟餐廳有關的操作：隨機、新增、移除、查看
