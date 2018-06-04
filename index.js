@@ -52,6 +52,7 @@ const earthquake = function () {
     }
   });
 };
+earthquake();
 
 
 
@@ -128,7 +129,7 @@ bot.on('message', function (event) {
 			
 		}
 		else if(event.message.text == '地震'){
-			earthquake();
+			
 			event.reply(result).then(function (data) {
                 // success 
                 console.log(msg);
