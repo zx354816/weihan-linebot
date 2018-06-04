@@ -4,6 +4,28 @@ const request = require("request");
 const cheerio = require("cheerio");
 const fs = require("fs");
 
+
+
+const bot = linebot({
+	channelId: process.env.CHANNEL_ID,
+	channelSecret: process.env.CHANNEL_SECRET,
+	channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
+});
+
+const app = express();
+
+const linebotParser = bot.parser();
+
+
+/*	測試Heroku平台的Node.js環境可以運作*/
+app.get('/',function(req,res){
+    res.send('Hello World!');
+});
+app.post('/linewebhook', linebotParser);
+
+
+
+
 const earthquake = function () {
   request({
     url: "http://www.cwb.gov.tw/V7/modules/MOD_EC_Home.htm", // 中央氣象局網頁
@@ -26,32 +48,10 @@ const earthquake = function () {
       const location = table_td.eq(6).text(); // location (位置)
       const url = table_td.eq(7).text(); // url (網址)
       // 建立物件並(push)存入結果
-      result.push(Object.assign({ time, latitude, longitude, amgnitude, depth, location, url }));
+      result.push(Object.assign({ time, amgnitude, depth, location, url }));
     }
   });
 };
-
-const bot = linebot({
-	channelId: process.env.CHANNEL_ID,
-	channelSecret: process.env.CHANNEL_SECRET,
-	channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
-});
-
-const app = express();
-
-const linebotParser = bot.parser();
-
-
-/*	測試Heroku平台的Node.js環境可以運作*/
-app.get('/',function(req,res){
-    res.send('Hello World!');
-});
-app.post('/linewebhook', linebotParser);
-
-
-
-
-
 
 
 
@@ -127,7 +127,7 @@ bot.on('message', function (event) {
 			});
 			
 		}
-		else if(event.message.text == '地震'!=null){
+		else if(event.message.text == '地震'){
 			earthquake();
 			event.reply(result).then(function (data) {
                 // success 
