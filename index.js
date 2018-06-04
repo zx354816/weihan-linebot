@@ -1,8 +1,8 @@
 ﻿const linebot = require('linebot');
 const express = require('express');
+const fs = require("fs");
 const request = require("request");
 const cheerio = require("cheerio");
-const fs = require("fs");
 
 
 
@@ -25,7 +25,7 @@ app.post('/linewebhook', linebotParser);
 
 
 
-
+const result = []; // 建立一個儲存結果的容器
 const earthquake = function () {
   request({
     url: "http://www.cwb.gov.tw/V7/modules/MOD_EC_Home.htm", // 中央氣象局網頁
@@ -35,7 +35,7 @@ const earthquake = function () {
       return;
     }
     const $ = cheerio.load(body); // 載入 body
-    const result = []; // 建立一個儲存結果的容器
+    
     const table_tr = $(".BoxTable tr"); // 爬最外層的 Table(class=BoxTable) 中的 tr
 
     for (let i = 1; i < table_tr.length; i++) { // 走訪 tr
@@ -48,11 +48,10 @@ const earthquake = function () {
       const location = table_td.eq(6).text(); // location (位置)
       const url = table_td.eq(7).text(); // url (網址)
       // 建立物件並(push)存入結果
-      result.push(Object.assign({ time, amgnitude, depth, location, url }));
+      result.push(time);
     }
   });
 };
-earthquake();
 
 
 
