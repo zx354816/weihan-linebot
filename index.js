@@ -26,6 +26,7 @@ app.post('/linewebhook', linebotParser);
 
 
 const LOL_result = []; // 建立一個儲存結果的容器
+const Beauty_result = []; // 建立一個儲存結果的容器
 const LOL_PTT_Spider = function () {
     request({
         url: "https://www.ptt.cc/bbs/LoL/index.html", // LOOOL
@@ -64,13 +65,13 @@ const Beauty_PTT_Spider = function () {
         const title_class = $(".title"); // 爬外層的 (class=title)
         const nrec_class = $(".nrec");//推數的class
 
-        LOL_result.length = 0;//先清空 不然會一直push
+        Beauty_result.length = 0;//先清空 不然會一直push
         for (let i = 0 ; i < title_class.length - 5; i++) {
             const title = title_class.eq(i).find('a').text();
             const url = title_class.eq(i).find('a').attr("href");
             const bbb = nrec_class.eq(i).text();
             if (url != undefined) {
-                LOL_result.push(bbb + "推 " + title + "\nhttps://www.ptt.cc" + url + "\n");
+                Beauty_result.push(bbb + "推 " + title + "\nhttps://www.ptt.cc" + url + "\n");
             }
         }
     });
