@@ -32,9 +32,9 @@ const Beauty_result = []; // 建立一個儲存結果的容器
 
 
 
-const webCrawler = function (_url,_posIndex) {
+const PPT_webCrawler = function (_url,_posIndex) {
     request({
-        url: _url, // LOOOL
+        url: _url;
         method: "GET"
     }, function (error, response, body) {
         if (error || !body) {
@@ -58,6 +58,7 @@ const webCrawler = function (_url,_posIndex) {
         }
     });
 };
+
 
 
 
@@ -137,7 +138,7 @@ bot.on('message', function (event) {
             爬蟲顯示的地方
         */
 		else if(event.message.text == 'lol'){
-		    webCrawler("https://www.ptt.cc/bbs/LoL/index.html",4);
+		    PPT_webCrawler("https://www.ptt.cc/bbs/LoL/index.html",4);
 		    event.reply(LOL_result.join('\n').toString()).then(function (data) {
                 
             }).catch(function (error) {
@@ -147,7 +148,7 @@ bot.on('message', function (event) {
 			
 		}
 		else if (event.message.text == '表特') {
-		    webCrawler("https://www.ptt.cc/bbs/Beauty/index.html",5);
+		    PPT_webCrawler("https://www.ptt.cc/bbs/Beauty/index.html",5);
 		    event.reply(Beauty_result.join('\n').toString()).then(function (data) {
 
 		    }).catch(function (error) {
