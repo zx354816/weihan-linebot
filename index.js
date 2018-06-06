@@ -134,9 +134,9 @@ bot.on('message', function (event) {
 			});
 			
 		}
-		else if(event.message.text == 'LOL'){
+		else if(event.message.text == 'lol'){
 			
-		    event.reply(result.join('\n').toString()).then(function (data) {
+		    event.reply(result.join('\n').toString()+"Hi").then(function (data) {
                 
             }).catch(function (error) {
                 // error 
