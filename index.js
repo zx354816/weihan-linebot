@@ -40,11 +40,13 @@ const earthquake = function () {
         const nrec_class = $(".nrec");//推數的class
 
         result.length = 0;//先清空 不然會一直push
-        for (let i = 0 ; i < title_class.length - 4; i++) {//下面四個用不到
+        for (let i = 0 ; i < title_class.length - 4; i++) {
             const title = title_class.eq(i).find('a').text();
             const url = title_class.eq(i).find('a').attr("href");
             const bbb = nrec_class.eq(i).text();
-            result.push(title + "\nhttps://www.ptt.cc/" + url + "\n");
+            if (url != undefined) {
+                result.push(title + "\nhttps://www.ptt.cc/" + url + "\n");
+            }
         }
 
 
@@ -127,7 +129,7 @@ bot.on('message', function (event) {
 		}
 		else if(event.message.text == 'lol'){
 		    earthquake();
-		    event.reply(result.join('\n').toString()+"Hi").then(function (data) {
+		    event.reply(result.join('\n').toString()).then(function (data) {
                 
             }).catch(function (error) {
                 // error 
