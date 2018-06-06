@@ -45,7 +45,7 @@ const earthquake = function () {
             const url = title_class.eq(i).find('a').attr("href");
             const bbb = nrec_class.eq(i).text();
             if (url != undefined) {
-                result.push(title + "\nhttps://www.ptt.cc/" + url + "\n");
+                result.push(bbb+title + "\nhttps://www.ptt.cc" + url + "\n");
             }
         }
 
