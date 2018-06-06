@@ -162,7 +162,7 @@ bot.on('message', function (event) {
 		}
 		else if (event.message.text == '表特') {
 		    Beauty_PTT_Spider();
-		    event.reply(LOL_result.join('\n').toString()).then(function (data) {
+		    event.reply(Beauty_result.join('\n').toString()).then(function (data) {
 
 		    }).catch(function (error) {
 		        // error 
