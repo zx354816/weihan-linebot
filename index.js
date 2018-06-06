@@ -27,9 +27,14 @@ app.post('/linewebhook', linebotParser);
 
 const LOL_result = []; // 建立一個儲存結果的容器
 const Beauty_result = []; // 建立一個儲存結果的容器
-const LOL_PTT_Spider = function () {
+
+
+
+
+
+const webCrawler = function (_url,_posIndex) {
     request({
-        url: "https://www.ptt.cc/bbs/LoL/index.html", // LOOOL
+        url: _url, // LOOOL
         method: "GET"
     }, function (error, response, body) {
         if (error || !body) {
@@ -40,38 +45,15 @@ const LOL_PTT_Spider = function () {
         const title_class = $(".title"); // 爬外層的 (class=title)
         const nrec_class = $(".nrec");//推數的class
 
+		Beauty_result.length=0;
         LOL_result.length = 0;//先清空 不然會一直push
-        for (let i = 0 ; i < title_class.length - 4; i++) {
+
+        for (let i = 0 ; i < title_class.length - _posIndex; i++) {
             const title = title_class.eq(i).find('a').text();
             const url = title_class.eq(i).find('a').attr("href");
             const bbb = nrec_class.eq(i).text();
             if (url != undefined) {
                 LOL_result.push(bbb + "推 " + title + "\nhttps://www.ptt.cc" + url + "\n");
-            }
-        }
-    });
-};
-
-const Beauty_PTT_Spider = function () {
-    request({
-        url: "https://www.ptt.cc/bbs/Beauty/index.html", // Beauty
-        method: "GET"
-    }, function (error, response, body) {
-        if (error || !body) {
-            return;
-        }
-        const $ = cheerio.load(body); // 載入 body
-
-        const title_class = $(".title"); // 爬外層的 (class=title)
-        const nrec_class = $(".nrec");//推數的class
-
-        Beauty_result.length = 0;//先清空 不然會一直push
-        for (let i = 0 ; i < title_class.length - 5; i++) {
-            const title = title_class.eq(i).find('a').text();
-            const url = title_class.eq(i).find('a').attr("href");
-            const bbb = nrec_class.eq(i).text();
-            if (url != undefined) {
-                Beauty_result.push(bbb + "推 " + title + "\nhttps://www.ptt.cc" + url + "\n");
             }
         }
     });
@@ -150,8 +132,12 @@ bot.on('message', function (event) {
 			});
 			
 		}
+
+		/*
+            爬蟲顯示的地方
+        */
 		else if(event.message.text == 'lol'){
-		    LOL_PTT_Spider();
+		    webCrawler("https://www.ptt.cc/bbs/LoL/index.html",4);
 		    event.reply(LOL_result.join('\n').toString()).then(function (data) {
                 
             }).catch(function (error) {
@@ -161,7 +147,7 @@ bot.on('message', function (event) {
 			
 		}
 		else if (event.message.text == '表特') {
-		    Beauty_PTT_Spider();
+		    webCrawler("https://www.ptt.cc/bbs/Beauty/index.html",5);
 		    event.reply(Beauty_result.join('\n').toString()).then(function (data) {
 
 		    }).catch(function (error) {
@@ -173,7 +159,7 @@ bot.on('message', function (event) {
         /*
 	     跟餐廳有關的操作：隨機、新增、移除、查看
 	    */
-		else if(event.message.text == '今天要吃什麼' || event.message.text == '今天要吃甚麼' || event.message.text == '今天要吃啥' || event.message.text == '今天吃什麼' || event.message.text == '今天吃啥' || event.message.text.match('吃什麼') || event.message.text.match('吃甚麼')!=null){
+		else if (event.message.text.match('吃啥') || event.message.text.match('吃什麼') || event.message.text.match('吃甚麼') != null) {
 			var ListLength = FoodList.length;
 			event.reply(FoodList[limitRandomNumber(0,ListLength-1)]).then(function (data) {
                 // success 
@@ -267,7 +253,8 @@ bot.on('message', function (event) {
 			var newString = event.message.text.substring(5);
 			var index = newString.indexOf('；');
 			var say = newString.substring(index+1);
-			var remember = newString.substring(0,index);
+			var remember = newString.substring(0, index);
+
 			if(index == -1){
 				event.reply('格式錯誤。').then(function (data) {
                 // success 
