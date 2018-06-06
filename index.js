@@ -136,7 +136,7 @@ bot.on('message', function (event) {
 		}
 		else if(event.message.text == 'LOL'){
 			
-		    event.reply(result).then(function (data) {
+		    event.reply(result.join('\n').toString()).then(function (data) {
                 
             }).catch(function (error) {
                 // error 
