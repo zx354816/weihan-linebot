@@ -139,7 +139,7 @@ bot.on('message', function (event) {
         */
 		else if(event.message.text == 'lol'){
 		    PPT_webCrawler("https://www.ptt.cc/bbs/LoL/index.html",4);
-		    event.reply(LOL_result.join('\n').toString()).then(function (data) {
+		    event.reply(result.join('\n').toString()).then(function (data) {
                 
             }).catch(function (error) {
                 // error 
@@ -149,7 +149,7 @@ bot.on('message', function (event) {
 		}
 		else if (event.message.text == '表特') {
 		    PPT_webCrawler("https://www.ptt.cc/bbs/Beauty/index.html",5);
-		    event.reply(Beauty_result.join('\n').toString()).then(function (data) {
+		    event.reply(result.join('\n').toString()).then(function (data) {
 
 		    }).catch(function (error) {
 		        // error 
