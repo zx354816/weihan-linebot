@@ -34,7 +34,7 @@ const Beauty_result = []; // 建立一個儲存結果的容器
 
 const PPT_webCrawler = function (_url,_posIndex) {
     request({
-        url: _url;
+        url: _url,
         method: "GET"
     }, function (error, response, body) {
         if (error || !body) {
