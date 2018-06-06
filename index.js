@@ -33,6 +33,7 @@ const result = [];
 
 
 const PPT_webCrawler = function (_url,_posIndex) {
+	result.length = 0;
     request({
         url: _url,
         method: "GET"
@@ -44,9 +45,8 @@ const PPT_webCrawler = function (_url,_posIndex) {
 
         const title_class = $(".title"); // 爬外層的 (class=title)
         const nrec_class = $(".nrec");//推數的class
-		result.length = 0;
-		Beauty_result.length=0;
-        LOL_result.length = 0;//先清空 不然會一直push
+
+		
 
         for (let i = 0 ; i < title_class.length - _posIndex; i++) {
             const title = title_class.eq(i).find('a').text();
@@ -131,8 +131,8 @@ bot.on('message', function (event) {
 				packageId: '2',
 				stickerId: '26'
 			});
-			
 		}
+
 
 		/*
             爬蟲顯示的地方
