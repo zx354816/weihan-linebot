@@ -135,7 +135,7 @@ bot.on('message', function (event) {
 			
 		}
 		else if(event.message.text == 'lol'){
-			
+		    earthquake();
 		    event.reply(result.join('\n').toString()+"Hi").then(function (data) {
                 
             }).catch(function (error) {
