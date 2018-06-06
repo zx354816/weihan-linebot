@@ -25,8 +25,8 @@ app.post('/linewebhook', linebotParser);
 
 
 
-const result = []; // 建立一個儲存結果的容器
-const earthquake = function () {
+const LOL_result = []; // 建立一個儲存結果的容器
+const LOL_PTT_Spider = function () {
     request({
         url: "https://www.ptt.cc/bbs/LoL/index.html", // LOOOL
         method: "GET"
@@ -39,18 +39,40 @@ const earthquake = function () {
         const title_class = $(".title"); // 爬外層的 (class=title)
         const nrec_class = $(".nrec");//推數的class
 
-        result.length = 0;//先清空 不然會一直push
+        LOL_result.length = 0;//先清空 不然會一直push
         for (let i = 0 ; i < title_class.length - 4; i++) {
             const title = title_class.eq(i).find('a').text();
             const url = title_class.eq(i).find('a').attr("href");
             const bbb = nrec_class.eq(i).text();
             if (url != undefined) {
-                result.push(bbb+"推 "+title + "\nhttps://www.ptt.cc" + url + "\n");
+                LOL_result.push(bbb + "推 " + title + "\nhttps://www.ptt.cc" + url + "\n");
             }
         }
+    });
+};
 
+const Beauty_PTT_Spider = function () {
+    request({
+        url: "https://www.ptt.cc/bbs/Beauty/index.html", // Beauty
+        method: "GET"
+    }, function (error, response, body) {
+        if (error || !body) {
+            return;
+        }
+        const $ = cheerio.load(body); // 載入 body
 
-        
+        const title_class = $(".title"); // 爬外層的 (class=title)
+        const nrec_class = $(".nrec");//推數的class
+
+        LOL_result.length = 0;//先清空 不然會一直push
+        for (let i = 0 ; i < title_class.length - 5; i++) {
+            const title = title_class.eq(i).find('a').text();
+            const url = title_class.eq(i).find('a').attr("href");
+            const bbb = nrec_class.eq(i).text();
+            if (url != undefined) {
+                LOL_result.push(bbb + "推 " + title + "\nhttps://www.ptt.cc" + url + "\n");
+            }
+        }
     });
 };
 
@@ -128,14 +150,24 @@ bot.on('message', function (event) {
 			
 		}
 		else if(event.message.text == 'lol'){
-		    earthquake();
-		    event.reply(result.join('\n').toString()).then(function (data) {
+		    LOL_PTT_Spider();
+		    event.reply(LOL_result.join('\n').toString()).then(function (data) {
                 
             }).catch(function (error) {
                 // error 
                 console.log('error');
             });
 			
+		}
+		else if (event.message.text == '表特') {
+		    Beauty_PTT_Spider();
+		    event.reply(LOL_result.join('\n').toString()).then(function (data) {
+
+		    }).catch(function (error) {
+		        // error 
+		        console.log('error');
+		    });
+
 		}
         /*
 	     跟餐廳有關的操作：隨機、新增、移除、查看
