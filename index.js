@@ -33,7 +33,7 @@ const result = [];
 
 
 const PPT_webCrawler = function (_url,_posIndex) {
-	result.length = 0;
+	
     request({
         url: _url,
         method: "GET"
@@ -47,7 +47,7 @@ const PPT_webCrawler = function (_url,_posIndex) {
         const nrec_class = $(".nrec");//推數的class
 
 		
-
+		result.length = 0;
         for (let i = 0 ; i < title_class.length - _posIndex; i++) {
             const title = title_class.eq(i).find('a').text();
             const url = title_class.eq(i).find('a').attr("href");
@@ -56,6 +56,7 @@ const PPT_webCrawler = function (_url,_posIndex) {
                 result.push(bbb + "推 " + title + "\nhttps://www.ptt.cc" + url + "\n");
             }
         }
+		
     });
 };
 
