@@ -36,24 +36,15 @@ const earthquake = function () {
         }
         const $ = cheerio.load(body); // 載入 body
 
-        const title_class = $(".title"); // 爬最外層的 Table(class=BoxTable) 中的 tr
+        const title_class = $(".title"); // 爬外層的 (class=title)
+        const nrec_class = $(".nrec");//推數的class
 
-        //for (let i = 1; i < table_tr.length; i++) { // 走訪 tr
-        //  const table_td = table_tr.eq(i).find('td'); // 擷取每個欄位(td)
-        //  const time = table_td.eq(1).text(); // time (台灣時間)
-        //  const latitude = table_td.eq(2).text(); // latitude (緯度)
-        //  const longitude = table_td.eq(3).text(); // longitude (經度)
-        //  const amgnitude = table_td.eq(4).text(); // magnitude (規模)
-        //  const depth = table_td.eq(5).text(); // depth (深度)
-        //  const location = table_td.eq(6).text(); // location (位置)
-        //  const url = table_td.eq(7).text(); // url (網址)
-        //  // 建立物件並(push)存入結果
-        //  result.push(time);
-        //}
-        result.length = 0;
-        for (let i = 0 ; i < title_class.length - 4; i++) {
+        result.length = 0;//先清空 不然會一直push
+        for (let i = 0 ; i < title_class.length - 4; i++) {//下面四個用不到
             const title = title_class.eq(i).find('a').text();
-            result.push(title);
+            const url = title_class.eq(i).find('a').attr("href");
+            const bbb = nrec_class.eq(i).text();
+            result.push(title + "\nhttps://www.ptt.cc/" + url + "\n");
         }
 
 
