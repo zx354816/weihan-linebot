@@ -29,7 +29,7 @@ const LOL_result = []; // 建立一個儲存結果的容器
 const Beauty_result = []; // 建立一個儲存結果的容器
 
 
-
+const result = [];
 
 
 const PPT_webCrawler = function (_url,_posIndex) {
@@ -44,7 +44,7 @@ const PPT_webCrawler = function (_url,_posIndex) {
 
         const title_class = $(".title"); // 爬外層的 (class=title)
         const nrec_class = $(".nrec");//推數的class
-
+		result.length = 0;
 		Beauty_result.length=0;
         LOL_result.length = 0;//先清空 不然會一直push
 
@@ -53,7 +53,7 @@ const PPT_webCrawler = function (_url,_posIndex) {
             const url = title_class.eq(i).find('a').attr("href");
             const bbb = nrec_class.eq(i).text();
             if (url != undefined) {
-                LOL_result.push(bbb + "推 " + title + "\nhttps://www.ptt.cc" + url + "\n");
+                result.push(bbb + "推 " + title + "\nhttps://www.ptt.cc" + url + "\n");
             }
         }
     });
