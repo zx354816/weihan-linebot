@@ -68,6 +68,7 @@ const PPT_webCrawler = function (_url,_posIndex) {
 
 
 
+
 function limitRandomNumber(n,m){
     var c = m-n+1;  
     return Math.floor(Math.random() * c + n);
@@ -140,6 +141,7 @@ bot.on('message', function (event) {
         */
 		else if(event.message.text == 'lol'){
 		    PPT_webCrawler("https://www.ptt.cc/bbs/LoL/index.html",4);
+			PPT_webCrawler("https://www.ptt.cc/bbs/LoL/index.html",4);
 		    event.reply(result.join('\n').toString()).then(function (data) {
                 
             }).catch(function (error) {
@@ -150,6 +152,7 @@ bot.on('message', function (event) {
 		}
 		else if (event.message.text == '表特') {
 		    PPT_webCrawler("https://www.ptt.cc/bbs/Beauty/index.html",5);
+			PPT_webCrawler("https://www.ptt.cc/bbs/Beauty/index.html",5);
 		    event.reply(result.join('\n').toString()).then(function (data) {
 
 		    }).catch(function (error) {
