@@ -140,7 +140,6 @@ bot.on('message', function (event) {
         */
 		else if(event.message.text == 'lol'){
 		    PPT_webCrawler("https://www.ptt.cc/bbs/LoL/index.html", 4, function () {
-
 		        event.reply(result.join('\n').toString());
 		    });
 			
