@@ -3,7 +3,7 @@ const express = require('express');
 const fs = require("fs");
 const request = require("request");
 const cheerio = require("cheerio");
-
+const nightmareHelper = require("nightmare-helper");
 
 
 const bot = linebot({
@@ -227,11 +227,10 @@ bot.on('message', function (event) {
 
 		//google
 		else if (event.message.text.match('搜尋:')!=null || event.message.text.match('搜尋：')!=null) {
-		    var newString = event.message.text.substring(3);
-			var newURL = "https://www.google.com/search?q="+newString;
-			Google_webCrawler(newURL, 0 , function () {
-		        event.reply(Googleresult.join('\n').toString());
-		    });
+		    //var newString = event.message.text.substring(3);
+			//var newURL = "https://www.google.com/search?q="+newString;
+			
+			event.reply(nightmareHelper.googleImages("Cat").toString());
 		}
 
 
