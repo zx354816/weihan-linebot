@@ -230,7 +230,7 @@ bot.on('message', function (event) {
 		    var newString = event.message.text.substring(3);
 			var newURL = "https://www.google.com/search?q="+newString;
 			Google_webCrawler(newURL, 0 , function () {
-		        event.reply( [{Googleresult.join('\n').toString()},{newString}]);
+		        event.reply(Googleresult.join('\n').toString());
 		    });
 		}
 
