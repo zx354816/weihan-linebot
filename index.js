@@ -77,7 +77,7 @@ const Dcard_webCrawler = function (_url,_posIndex,callb) {
 
         const url_class = $(".PostList_wrapper_2BLUM"); // 爬外層的 (class=PostEntry_root_V6g0r)
         const Like_class = $(".Like_counter_1enlP");//推數的class
-		const title_class = $(".PostEntry_title_H5o4d PostEntry_unread_2U217") //標題的class
+		const title_class = $(".PostEntry_title_H5o4d") //標題的class
 
 		
 		Dcardresult.length = 0;
@@ -144,7 +144,7 @@ var myDictionary = {
 	'你在說一次':'沒有就是沒有',
 	'好':'好什麼好',
 	'幹':'留點口德啦幹你娘機掰',
-	'Test':'Dcard2'
+	'Test':'Dcard3'
 	
 };
 var allDictionary = [];
