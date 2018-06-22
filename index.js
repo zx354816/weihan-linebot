@@ -75,7 +75,7 @@ const Dcard_webCrawler = function (_url,_posIndex,callb) {
         }
         const $ = cheerio.load(body); // 載入 body
 
-        const url_class = $(".PostEntry_root_V6g0r"); // 爬外層的 (class=PostEntry_root_V6g0r)
+        const url_class = $(".PostList_wrapper_2BLUM"); // 爬外層的 (class=PostEntry_root_V6g0r)
         const Like_class = $(".Like_counter_1enlP");//推數的class
 		const title_class = $(".PostEntry_title_H5o4d PostEntry_unread_2U217") //標題的class
 
@@ -86,7 +86,7 @@ const Dcard_webCrawler = function (_url,_posIndex,callb) {
             const url = url_class.eq(i).find('a').attr("href");
             const bbb = Like_class.eq(i).text();
             if (url != undefined) {
-                Dcardresult.push(bbb + "推 " + title + "\nhttps://www.dcard.tw/f/pu" + url + "\n");
+                Dcardresult.push(bbb + "推 " + title + "\nhttps://www.dcard.tw/" + url + "\n");
             }
         }
         if (typeof callb === 'function') {
