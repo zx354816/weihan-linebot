@@ -3,7 +3,7 @@ const express = require('express');
 const fs = require("fs");
 const request = require("request");
 const cheerio = require("cheerio");
-const GoogleImageSearch = require("free-google-image-search");
+//const GoogleImageSearch = require("free-google-image-search");
 
 
 const bot = linebot({
@@ -91,15 +91,6 @@ const Dcard_webCrawler = function (_url,_posIndex,callb) {
         }
     });
 };
-
-const Googleresult = [];
-const GoogleImage = function(){
-	Googleresult.length =0;
-	GoogleImageSearch.searchImage("cats")
-				.then((res) => {
-				Googleresult.push(res);
-	})
-}
 
 
 
