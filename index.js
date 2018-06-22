@@ -81,7 +81,7 @@ const Dcard_webCrawler = function (_url,_posIndex,callb) {
 
 		
 		Dcardresult.length = 0;
-        for (let i = 0 ; i < url_class.length - _posIndex; i++) {
+        for (let i = 0 ; i < _posIndex; i++) {
             const title = title_class.eq(i).text();
             const url = url_class.eq(i).find('a').attr("href");
             const bbb = Like_class.eq(i).text();
@@ -144,7 +144,7 @@ var myDictionary = {
 	'你在說一次':'沒有就是沒有',
 	'好':'好什麼好',
 	'幹':'留點口德啦幹你娘機掰',
-	'Test':'Dcard4'
+	'Test':'Dcard5'
 	
 };
 var allDictionary = [];
