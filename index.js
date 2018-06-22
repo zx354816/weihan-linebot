@@ -86,7 +86,7 @@ const Dcard_webCrawler = function (_url,_posIndex,callb) {
             const url = url_class.eq(i).find('a').attr("href");
             const bbb = Like_class.eq(i).text();
             if (url != undefined) {
-                Dcardresult.push(bbb + "推 " + title + "\nhttps://www.dcard.tw/" + url + "\n");
+                Dcardresult.push(bbb + "推 " + title + "\nhttps://www.dcard.tw" + url + "\n");
             }
         }
         if (typeof callb === 'function') {
