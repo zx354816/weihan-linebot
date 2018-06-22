@@ -99,11 +99,11 @@ const Google_webCrawler = function(searchName,num_result){
 	  query: searchName,
 	  limit: num_result
 	};
-	Googleresult.length = 0 ;
 
 	scraper.search(options, function(err, url, meta) {
 		// This is called for each result
 		if(err) throw err;
+        console.log(meta.title+"======"+url);
 		Googleresult.push(meta.title+"======"+url);
 	});	
 }
@@ -178,6 +178,13 @@ bot.on('message', function (event) {
 				stickerId: '26'
 			});
 		}
+		
+
+		else if (event.message.text.match('Google:')!= null) {
+			var newString = event.message.text.substring(7);
+		    Google_webCrawler(newString,10);
+		    event.reply(Googleresult.toString()+"Hi");
+		}
 
 
 		/*
@@ -189,13 +196,11 @@ bot.on('message', function (event) {
 		    PPT_webCrawler("https://www.ptt.cc/bbs/LoL/index.html", 4, function () {
 		        event.reply(PTTresult.join('\n').toString());
 		    });
-			
 		}
 		else if (event.message.text == '表特') {
 		    PPT_webCrawler("https://www.ptt.cc/bbs/Beauty/index.html", 5, function () {
 		        event.reply(PTTresult.join('\n').toString());
 		    });
-
 		}
 
 		//Dcard
@@ -203,21 +208,12 @@ bot.on('message', function (event) {
 		    Dcard_webCrawler("https://www.dcard.tw/f/pu", 5 , function () {
 		        event.reply(Dcardresult.join('\n').toString());
 		    });
-
 		}
 		else if (event.message.text == '低卡熱門') {
 		    Dcard_webCrawler("https://www.dcard.tw/f", 10 , function () {
 		        event.reply(Dcardresult.join('\n').toString());
 		    });
 		}
-
-
-		else if (event.message.text.match('Google:')!= null) {
-			var newString = event.message.text.substring(7);
-		    Google_webCrawler(newString,10);
-		    event.reply(Googleresult.join('\n').toString());
-		}
-
 
 
         /*
