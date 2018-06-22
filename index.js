@@ -3,7 +3,6 @@ const express = require('express');
 const fs = require("fs");
 const request = require("request");
 const cheerio = require("cheerio");
-//const scraper = require('google-search-scraper');
 
 
 const bot = linebot({
@@ -92,26 +91,6 @@ const Dcard_webCrawler = function (_url,_posIndex,callb) {
     });
 };
 
-/*
-const Googleresult = [];
-const Google_webCrawler = function(searchName,num_result){
-	var scraper = require('google-search-scraper');
-
-	var options = {
-	  query: '朱威翰',
-	  host: 'www.google.fr',
-	  lang: 'zh',
-	  limit: 10,
-	  params: {} // params will be copied as-is in the search URL query string
-	};
-
-	scraper.search(options, function(err, url,meta) {
-	  if(url!=undefined){
-	  console.log(meta.title+":"+url);
-	  }
-	});
-}
-*/
 
 
 
@@ -183,13 +162,6 @@ bot.on('message', function (event) {
 			});
 		}
 		
-		/*
-		else if (event.message.text.match('Google:')!= null) {
-			var newString = event.message.text.substring(7);
-		    Google_webCrawler(newString,10);
-		    event.reply(Googleresult.toString()+"Hi");
-		}
-		*/
 
 		/*
             爬蟲顯示的地方
