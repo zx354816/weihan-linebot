@@ -30,8 +30,6 @@ const Beauty_result = []; // 建立一個儲存結果的容器
 
 
 const PTTresult = [];
-
-
 const PPT_webCrawler = function (_url,_posIndex,callb) {
 	
     request({
@@ -63,7 +61,6 @@ const PPT_webCrawler = function (_url,_posIndex,callb) {
 };
 
 const Dcardresult = [];
-
 const Dcard_webCrawler = function (_url,_posIndex,callb) {
 	
     request({
@@ -95,8 +92,35 @@ const Dcard_webCrawler = function (_url,_posIndex,callb) {
     });
 };
 
+const Googleresult = [];
+const Google_webCrawler = function (_url,_posIndex,callb) {
+	
+    request({
+        url: _url,
+        method: "GET"
+    }, function (error, response, body) {
+        if (error || !body) {
+            return;
+        }
+        const $ = cheerio.load(body); // 載入 body
 
+        const url_class = $(".r"); // 爬外層的 (class=PostEntry_root_V6g0r)
 
+		
+		Googleresult.length = 0;
+
+        for (let i = 0 ; i < url_class.length; i++) {
+            const title = url_class.eq(i).find('a').text();
+            const url = url_class.eq(i).find('a').attr("href");
+            if (url != undefined) {
+                Googleresult.push(title + "\n" + url + "\n");
+            }
+        }
+        if (typeof callb === 'function') {
+            callb();
+        }
+    });
+};
 
 
 
@@ -144,7 +168,7 @@ var myDictionary = {
 	'你在說一次':'沒有就是沒有',
 	'好':'好什麼好',
 	'幹':'留點口德啦幹你娘機掰',
-	'Test':'Dcard5'
+	'Test':'Google'
 	
 };
 var allDictionary = [];
@@ -199,9 +223,15 @@ bot.on('message', function (event) {
 		    Dcard_webCrawler("https://www.dcard.tw/f", 10 , function () {
 		        event.reply(Dcardresult.join('\n').toString());
 		    });
-
 		}
 
+		//google
+		else if (event.message.text.match('搜尋:')!=null || event.message.text.match('搜尋：')!=null) {
+		    var newString = event.message.text.substring(3);
+			Dcard_webCrawler("https://www.google.com/search?q="+newString, 0 , function () {
+		        event.reply(Googleresult.join('\n').toString());
+		    });
+		}
 
 
 
