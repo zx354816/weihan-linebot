@@ -29,7 +29,7 @@ const LOL_result = []; // 建立一個儲存結果的容器
 const Beauty_result = []; // 建立一個儲存結果的容器
 
 
-const result = [];
+const PTTresult = [];
 
 
 const PPT_webCrawler = function (_url,_posIndex,callb) {
@@ -47,13 +47,45 @@ const PPT_webCrawler = function (_url,_posIndex,callb) {
         const nrec_class = $(".nrec");//推數的class
 
 		
-		result.length = 0;
+		PTTresult.length = 0;
         for (let i = 0 ; i < title_class.length - _posIndex; i++) {
             const title = title_class.eq(i).find('a').text();
             const url = title_class.eq(i).find('a').attr("href");
             const bbb = nrec_class.eq(i).text();
             if (url != undefined) {
-                result.push(bbb + "推 " + title + "\nhttps://www.ptt.cc" + url + "\n");
+                PTTresult.push(bbb + "推 " + title + "\nhttps://www.ptt.cc" + url + "\n");
+            }
+        }
+        if (typeof callb === 'function') {
+            callb();
+        }
+    });
+};
+
+const Dcardresult = [];
+
+const Dcard_webCrawler = function (_url,_posIndex,callb) {
+	
+    request({
+        url: _url,
+        method: "GET"
+    }, function (error, response, body) {
+        if (error || !body) {
+            return;
+        }
+        const $ = cheerio.load(body); // 載入 body
+
+        const title_class = $(".PostEntry_root_V6g0r"); // 爬外層的 (class=PostEntry_root_V6g0r)
+        const nrec_class = $(".Like_counter_1enlP");//推數的class
+
+		
+		Dcardresult.length = 0;
+        for (let i = 0 ; i < title_class.length - _posIndex; i++) {
+            const title = title_class.eq(i).find('a').text();
+            const url = title_class.eq(i).find('a').attr("href");
+            const bbb = nrec_class.eq(i).text();
+            if (url != undefined) {
+                Dcardresult.push(bbb + "推 " + title + "\nhttps://www.dcard.tw/f/pu" + url + "\n");
             }
         }
         if (typeof callb === 'function') {
@@ -82,6 +114,7 @@ var FoodList =['巧味','汕頭意麵','歡歡','來來軒','影印店小籠包'
 '浪人鐵板燒','九龍城','鴨香麵','八方雲集','老先覺','饌喜堂','聖明自助餐',
 '嘉鄰快餐','吐司森林','飯尾鰭','海之柯','再抽一次','貢龜','朝祥煮','Morning House',
 '7-11','小管炒飯','海膽炒蛋','德記，可是倒了','烏龍大王，可是倒了','葉伴食堂'];
+
 var pose = ['69式','傳教式','火車便當','背入式','Oop式','騎乘式','活塞式','口交','毒龍鑽','彎腰下狗式'];
 
 
@@ -140,16 +173,28 @@ bot.on('message', function (event) {
         */
 		else if(event.message.text == 'lol'){
 		    PPT_webCrawler("https://www.ptt.cc/bbs/LoL/index.html", 4, function () {
-		        event.reply(result.join('\n').toString());
+		        event.reply(PTTresult.join('\n').toString());
 		    });
 			
 		}
 		else if (event.message.text == '表特') {
 		    PPT_webCrawler("https://www.ptt.cc/bbs/Beauty/index.html", 5, function () {
-		        event.reply(result.join('\n').toString());
+		        event.reply(PTTresult.join('\n').toString());
 		    });
 
 		}
+
+
+		else if (event.message.text == 'Dcard') {
+		    Dcard_webCrawler("https://www.dcard.tw/f/pu", 0 , function () {
+		        event.reply(Dcardresult.join('\n').toString());
+		    });
+
+		}
+
+
+
+
         /*
 	     跟餐廳有關的操作：隨機、新增、移除、查看
 	    */
