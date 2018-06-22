@@ -3,7 +3,7 @@ const express = require('express');
 const fs = require("fs");
 const request = require("request");
 const cheerio = require("cheerio");
-const nightmareHelper = require("free-google-image-search");
+const GoogleImageSearch = require("free-google-image-search");
 
 
 const bot = linebot({
@@ -93,7 +93,8 @@ const Dcard_webCrawler = function (_url,_posIndex,callb) {
 };
 
 const Googleresult = [];
-const GoogleImageSearch = function(){
+const GoogleImage = function(){
+	Googleresult.length =0;
 	GoogleImageSearch.searchImage("cats")
 				.then((res) => {
 				Googleresult.push(res);
@@ -146,7 +147,7 @@ var myDictionary = {
 	'你在說一次':'沒有就是沒有',
 	'好':'好什麼好',
 	'幹':'留點口德啦幹你娘機掰',
-	'Test':'Google6'
+	'Test':'Google7',
 	
 };
 var allDictionary = [];
@@ -204,9 +205,7 @@ bot.on('message', function (event) {
 		}
 
 		//google
-		else if (event.message.text.match('搜尋:')!=null || event.message.text.match('搜尋：')!=null) {
-		    //var newString = event.message.text.substring(3);
-			//var newURL = "https://www.google.com/search?q="+newString;
+		else if (event.message.text == 'google') {
 				event.reply(Googleresult.join('\n').toString());
 		}
 
