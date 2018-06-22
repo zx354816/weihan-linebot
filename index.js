@@ -173,6 +173,8 @@ bot.on('message', function (event) {
 		/*
             爬蟲顯示的地方
         */
+
+		//PTT
 		else if(event.message.text == 'lol'){
 		    PPT_webCrawler("https://www.ptt.cc/bbs/LoL/index.html", 4, function () {
 		        event.reply(PTTresult.join('\n').toString());
@@ -186,7 +188,7 @@ bot.on('message', function (event) {
 
 		}
 
-
+		//Dcard
 		else if (event.message.text == '靜宜熱門') {
 		    Dcard_webCrawler("https://www.dcard.tw/f/pu", 5 , function () {
 		        event.reply(Dcardresult.join('\n').toString());
@@ -194,7 +196,7 @@ bot.on('message', function (event) {
 
 		}
 		else if (event.message.text == '低卡熱門') {
-		    Dcard_webCrawler("https://www.dcard.tw/f", 5 , function () {
+		    Dcard_webCrawler("https://www.dcard.tw/f", 10 , function () {
 		        event.reply(Dcardresult.join('\n').toString());
 		    });
 
