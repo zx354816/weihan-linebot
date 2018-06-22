@@ -32,7 +32,7 @@ const Beauty_result = []; // 建立一個儲存結果的容器
 const result = [];
 
 
-const PPT_webCrawler = function (_url,_posIndex) {
+const PPT_webCrawler = function (_url,_posIndex,callb) {
 	
     request({
         url: _url,
@@ -56,7 +56,9 @@ const PPT_webCrawler = function (_url,_posIndex) {
                 result.push(bbb + "推 " + title + "\nhttps://www.ptt.cc" + url + "\n");
             }
         }
-		
+        if (typeof callb === 'function') {
+            callb();
+        }
     });
 };
 
@@ -79,7 +81,7 @@ var FoodList =['巧味','汕頭意麵','歡歡','來來軒','影印店小籠包'
 '舊永豆','胖老爹','海之蚵','佐賀','飯鋪子','紅豆','福萱','響樂',
 '浪人鐵板燒','九龍城','鴨香麵','八方雲集','老先覺','饌喜堂','聖明自助餐',
 '嘉鄰快餐','吐司森林','飯尾鰭','海之柯','再抽一次','貢龜','朝祥煮','Morning House',
-'7-11','小管炒飯','海膽炒蛋','德記，可是倒了','烏龍大王，可是倒了'];
+'7-11','小管炒飯','海膽炒蛋','德記，可是倒了','烏龍大王，可是倒了','葉伴食堂'];
 var pose = ['69式','傳教式','火車便當','背入式','Oop式','騎乘式','活塞式','口交','毒龍鑽','彎腰下狗式'];
 
 
@@ -100,8 +102,6 @@ var myDictionary = {
 	'今天的幸運色':'綠色',
 	'wow':'AAA',
 	'兇':'我看過很兇的，但沒看過這麼兇的',
-	'貓貓':'大口袋',
-	'兇':'我看過很兇的，但沒看過這麼兇的',
 	'哪一間鹹酥雞最好吃':'巧味',
 	'我覺得可以':'貓貓真的很嚴格',
 	'對':'對什麼對',
@@ -110,7 +110,6 @@ var myDictionary = {
 	'你在說一次':'沒有就是沒有',
 	'好':'好什麼好',
 	'幹':'留點口德啦幹你娘機掰',
-	'Hello':'World!',
 	
 };
 var allDictionary = [];
@@ -140,13 +139,16 @@ bot.on('message', function (event) {
             爬蟲顯示的地方
         */
 		else if(event.message.text == 'lol'){
-		    PPT_webCrawler("https://www.ptt.cc/bbs/LoL/index.html",4);
-		    event.reply(result.join('\n').toString());
+		    PPT_webCrawler("https://www.ptt.cc/bbs/LoL/index.html", 4, function () {
+
+		        event.reply(result.join('\n').toString());
+		    });
 			
 		}
 		else if (event.message.text == '表特') {
-		    PPT_webCrawler("https://www.ptt.cc/bbs/Beauty/index.html",5);
-		    event.reply(result.join('\n').toString());
+		    PPT_webCrawler("https://www.ptt.cc/bbs/Beauty/index.html", 5, function () {
+		        event.reply(result.join('\n').toString());
+		    });
 
 		}
         /*
