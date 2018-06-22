@@ -168,7 +168,7 @@ var myDictionary = {
 	'你在說一次':'沒有就是沒有',
 	'好':'好什麼好',
 	'幹':'留點口德啦幹你娘機掰',
-	'Test':'Google'
+	'Test':'Google2'
 	
 };
 var allDictionary = [];
