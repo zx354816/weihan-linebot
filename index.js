@@ -187,7 +187,7 @@ bot.on('message', function (event) {
 		}
 
 
-		else if (event.message.text == 'Dcard') {
+		else if (event.message.text == '低卡熱門') {
 		    Dcard_webCrawler("https://www.dcard.tw/f/pu", 5 , function () {
 		        event.reply(Dcardresult.join('\n').toString());
 		    });
