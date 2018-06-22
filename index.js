@@ -94,23 +94,18 @@ const Dcard_webCrawler = function (_url,_posIndex,callb) {
 
 
 const Googleresult = [];
-const Google_webCrawler = function(searchName,num_result,callb){
+const Google_webCrawler = function(searchName,num_result){
 	var options = {
 	  query: searchName,
 	  limit: num_result
 	};
 	Googleresult.length = 0 ;
+
 	scraper.search(options, function(err, url, meta) {
-	  // This is called for each result
-	  if(err) throw err;
-		if (url != undefined) {
-                Googleresult.push(meta.title + "\n" + url + "\n");
-        }
-		if (typeof callb === 'function') {
-            callb();
-		}
-	});
-	
+		// This is called for each result
+		if(err) throw err;
+		Googleresult.push(meta.title+"======"+url);
+	});	
 }
 
 
@@ -215,11 +210,12 @@ bot.on('message', function (event) {
 		        event.reply(Dcardresult.join('\n').toString());
 		    });
 		}
+
+
 		else if (event.message.text.match('Google:')!= null) {
 			var newString = event.message.text.substring(7);
-		    Google_webCrawler(newString, 10 , function () {
-		        event.reply(Googleresult.join('\n').toString());
-		    });
+		    Google_webCrawler(newString,10);
+		    event.reply(Googleresult.join('\n').toString());
 		}
 
 
