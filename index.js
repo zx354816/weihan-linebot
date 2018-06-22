@@ -144,7 +144,7 @@ var myDictionary = {
 	'你在說一次':'沒有就是沒有',
 	'好':'好什麼好',
 	'幹':'留點口德啦幹你娘機掰',
-	'Test':'Dcard3'
+	'Test':'Dcard4'
 	
 };
 var allDictionary = [];
@@ -188,7 +188,7 @@ bot.on('message', function (event) {
 
 
 		else if (event.message.text == 'Dcard') {
-		    Dcard_webCrawler("https://www.dcard.tw/f/pu", 0 , function () {
+		    Dcard_webCrawler("https://www.dcard.tw/f/pu", 5 , function () {
 		        event.reply(Dcardresult.join('\n').toString());
 		    });
 
