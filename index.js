@@ -75,15 +75,16 @@ const Dcard_webCrawler = function (_url,_posIndex,callb) {
         }
         const $ = cheerio.load(body); // 載入 body
 
-        const title_class = $(".PostEntry_root_V6g0r"); // 爬外層的 (class=PostEntry_root_V6g0r)
-        const nrec_class = $(".Like_counter_1enlP");//推數的class
+        const url_class = $(".PostEntry_root_V6g0r"); // 爬外層的 (class=PostEntry_root_V6g0r)
+        const Like_class = $(".Like_counter_1enlP");//推數的class
+		const title_class = $(".PostEntry_title_H5o4d PostEntry_unread_2U217") //標題的class
 
 		
 		Dcardresult.length = 0;
-        for (let i = 0 ; i < title_class.length - _posIndex; i++) {
-            const title = title_class.eq(i).find('a').text();
-            const url = title_class.eq(i).find('a').attr("href");
-            const bbb = nrec_class.eq(i).text();
+        for (let i = 0 ; i < url_class.length - _posIndex; i++) {
+            const title = title_class.eq(i).text();
+            const url = url_class.eq(i).find('a').attr("href");
+            const bbb = Like_class.eq(i).text();
             if (url != undefined) {
                 Dcardresult.push(bbb + "推 " + title + "\nhttps://www.dcard.tw/f/pu" + url + "\n");
             }
@@ -143,6 +144,7 @@ var myDictionary = {
 	'你在說一次':'沒有就是沒有',
 	'好':'好什麼好',
 	'幹':'留點口德啦幹你娘機掰',
+	'Test':'Dcard';
 	
 };
 var allDictionary = [];
