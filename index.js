@@ -228,7 +228,7 @@ bot.on('message', function (event) {
 		//google
 		else if (event.message.text.match('搜尋:')!=null || event.message.text.match('搜尋：')!=null) {
 		    var newString = event.message.text.substring(3);
-			Dcard_webCrawler("https://www.google.com/search?q="+newString, 0 , function () {
+			Google_webCrawler("https://www.google.com/search?q="+newString, 0 , function () {
 		        event.reply(Googleresult.join('\n').toString());
 		    });
 		}
