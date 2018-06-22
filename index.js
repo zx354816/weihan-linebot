@@ -187,8 +187,14 @@ bot.on('message', function (event) {
 		}
 
 
-		else if (event.message.text == '低卡熱門') {
+		else if (event.message.text == '靜宜熱門') {
 		    Dcard_webCrawler("https://www.dcard.tw/f/pu", 5 , function () {
+		        event.reply(Dcardresult.join('\n').toString());
+		    });
+
+		}
+		else if (event.message.text == '低卡熱門') {
+		    Dcard_webCrawler("https://www.dcard.tw/f", 5 , function () {
 		        event.reply(Dcardresult.join('\n').toString());
 		    });
 
