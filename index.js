@@ -137,7 +137,7 @@ var myDictionary = {
 	'你在說一次':'沒有就是沒有',
 	'好':'好什麼好',
 	'幹':'留點口德啦幹你娘機掰',
-	'Test':'Google8',
+	'Test':'pose Update and Admin3Test',
 	
 };
 var allDictionary = [];
@@ -267,19 +267,13 @@ bot.on('message', function (event) {
 		}
 
 	    /*
-           跟姿勢有關的操作：隨機、新增、移除、查看
+           跟姿勢有關的操作：隨機、查看、新增、移除
         */
 		else if (event.message.text.match('姿勢:') != null || event.message.text.match('姿勢：') != null) {
 		    var newString = event.message.text.substring(3);
 		    var ListLength = pose.length;
 		    event.reply(newString + pose[limitRandomNumber(0, ListLength - 1)]);
 
-		}
-		else if (event.message.text == '全部的姿勢' || event.message.text == '所有姿勢') {
-
-		    var _all = pose.join('、').toString();
-
-		    event.reply(_all);
 		}
 		else if (event.message.text.match('教你pose:') != null || event.message.text.match('教你pose：') != null) {
 
@@ -304,7 +298,12 @@ bot.on('message', function (event) {
 		        event.reply('= =我還不會' + newString + '辣');
 		    }
 		}
+		else if (event.message.text == '全部的姿勢' || event.message.text == '所有姿勢') {
 
+		    var _all = pose.join('、').toString();
+
+		    event.reply(_all);
+		}
 			
 
 		/*
