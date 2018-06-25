@@ -253,7 +253,7 @@ bot.on('message', function (event) {
 				});
 			}
 		}
-		else if (event.message.text == '全部的餐廳' || event.message.text == '所有餐廳') {
+        else if (event.message.text == '全部的餐廳' || event.message.text == '所有餐廳' || event.message.text == '全部餐廳' || event.message.text == '所有的餐廳') {
 			
 			var _all = FoodList.join('、').toString();
 
@@ -266,20 +266,45 @@ bot.on('message', function (event) {
             });
 		}
 
-		/*
-		 姿勢
-		*/
-		else if(event.message.text.match('姿勢:')!=null || event.message.text.match('姿勢：')!=null){
-			var newString = event.message.text.substring(3);
-			var ListLength = posze.length;
-			event.reply(newString+pose[limitRandomNumber(0,ListLength-1)]).then(function (data) {
-                // success 
-                console.log(msg);
-            }).catch(function (error) {
-                // error 
-                console.log('error');
-            });
+	    /*
+           跟姿勢有關的操作：隨機、新增、移除、查看
+        */
+		else if (event.message.text.match('姿勢:') != null || event.message.text.match('姿勢：') != null) {
+		    var newString = event.message.text.substring(3);
+		    var ListLength = pose.length;
+		    event.reply(newString + pose[limitRandomNumber(0, ListLength - 1)]);
+
 		}
+		else if (event.message.text == '全部的姿勢' || event.message.text == '所有姿勢') {
+
+		    var _all = pose.join('、').toString();
+
+		    event.reply(_all);
+		}
+		else if (event.message.text.match('教你pose:') != null || event.message.text.match('教你pose：') != null) {
+
+		    var newString = event.message.text.substring(7);
+		    if (pose.indexOf(newString) == -1) {
+
+		        pose.push(newString);
+		        event.reply('我學會' + newString + '了！');
+		    } else {
+		        event.reply('我已經會' + newString + '了啦');
+		    }
+		}
+		else if (event.message.text.match('忘記pose:') != null || event.message.text.match('忘記pose：') != null) {
+
+		    var newString = event.message.text.substring(7);
+		    if (pose.indexOf(newString) != -1) {
+
+		        var newnewString = pose.splice(pose.indexOf(newString), 1);
+
+		        event.reply('我忘記怎麼' + newnewString + '了......');
+		    } else {
+		        event.reply('= =我還不會' + newString + '辣');
+		    }
+		}
+
 			
 
 		/*
@@ -315,31 +340,23 @@ bot.on('message', function (event) {
 
 			
 		/*
-		 看全部的值，現在有：餐廳、字典
-		*/
-		else if(event.message.text == 'Admin'){
-			var ForMeToTestRestaurant = '\''+FoodList.join('\',\'').toString()+'\''; //把全部的餐廳變成我要的格式
-			event.reply(ForMeToTestRestaurant).then(function (data) {
-                // success 
-                console.log(msg);
-            }).catch(function (error) {
-                // error 
-                console.log('error');
-            });
+         看全部的值，現在有：餐廳、字典、姿勢
+        */
+		else if (event.message.text == 'Admin') {
+		    var ForMeToTestRestaurant = '\'' + FoodList.join('\',\'').toString() + '\''; //把全部的餐廳變成我要的格式
+		    event.reply(ForMeToTestRestaurant);
 		}
 		else if (event.message.text == 'Admin2') {
-			allDictionary.length =0;
-			for(var key in myDictionary){
-				 allDictionary.push('\''+key+'\':\''+myDictionary[key]+'\''); //把字典變成我要的格式
-			}
+		    allDictionary.length = 0;
+		    for (var key in myDictionary) {
+		        allDictionary.push('\'' + key + '\':\'' + myDictionary[key] + '\''); //把字典變成我要的格式
+		    }
 
-			event.reply(allDictionary.toString()).then(function (data) {
-			// success 
-			console.log(msg);
-			}).catch(function (error) {
-			// error 
-			console.log('error');
-			});
+		    event.reply(allDictionary.toString());
+		}
+		else if (event.message.text == 'Admin3') {
+		    var allPose = '\'' + pose.join('\',\'').toString() + '\''; //把全部的姿勢變成我要的格式
+		    event.reply(allPose);
 		}
 
 		/*
