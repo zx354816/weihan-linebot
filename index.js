@@ -137,7 +137,8 @@ var myDictionary = {
 	'你在說一次':'沒有就是沒有',
 	'好':'好什麼好',
 	'幹':'留點口德啦幹你娘機掰',
-	'Test':'pose Update and Admin3Test',
+	'抽':'插',
+	'Test':'DcardSex webcrawler Update',
 	
 };
 var allDictionary = [];
@@ -189,6 +190,11 @@ bot.on('message', function (event) {
 		    Dcard_webCrawler("https://www.dcard.tw/f", 10 , function () {
 		        event.reply(Dcardresult.join('\n').toString());
 		    });
+		}
+		else if (event.message.text == '西斯熱門'){
+			Dcard_webCrawler("https://www.dcard.tw/f/sex" , 10 , function(){
+				event.reply(Dcardresult.join('\n').toString());
+			});
 		}
 
 
