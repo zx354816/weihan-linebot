@@ -60,7 +60,7 @@ const PPT_webCrawler = function (_url,_posIndex,callb) {
 };
 
 const Dcardresult = [];
-const Dcard_webCrawler = function (_url,_posIndex,callb) {
+const Dcard_webCrawler = function (_url,_posStartIndex,_posEndIndex,callb) {
 	
     request({
         url: _url,
@@ -77,7 +77,7 @@ const Dcard_webCrawler = function (_url,_posIndex,callb) {
 
 		
 		Dcardresult.length = 0;
-        for (let i = 0 ; i < _posIndex; i++) {
+        for (let i = _posStartIndex ; i < _posEndIndex; i++) {
             const title = title_class.eq(i).text();
             const url = url_class.eq(i).find('a').attr("href");
             const bbb = Like_class.eq(i).text();
@@ -138,7 +138,7 @@ var myDictionary = {
 	'好':'好什麼好',
 	'幹':'留點口德啦幹你娘機掰',
 	'抽':'插',
-	'Test':'DcardSex webcrawler Update',
+	'Test':'改一下結構 從開始到結束有參數規定',
 	
 };
 var allDictionary = [];
@@ -182,17 +182,17 @@ bot.on('message', function (event) {
 
 		//Dcard
 		else if (event.message.text == '靜宜熱門') {
-		    Dcard_webCrawler("https://www.dcard.tw/f/pu", 5 , function () {
+		    Dcard_webCrawler("https://www.dcard.tw/f/pu", 0 , 5 , function () {
 		        event.reply(Dcardresult.join('\n').toString());
 		    });
 		}
 		else if (event.message.text == '低卡熱門') {
-		    Dcard_webCrawler("https://www.dcard.tw/f", 10 , function () {
+		    Dcard_webCrawler("https://www.dcard.tw/f", 0 ,10 , function () {
 		        event.reply(Dcardresult.join('\n').toString());
 		    });
 		}
 		else if (event.message.text == '西斯熱門'){
-			Dcard_webCrawler("https://www.dcard.tw/f/sex" , 10 , function(){
+			Dcard_webCrawler("https://www.dcard.tw/f/sex" , 2 , 12 , function(){
 				event.reply(Dcardresult.join('\n').toString());
 			});
 		}
