@@ -23,7 +23,6 @@ app.get('/',function(req,res){
 app.post('/linewebhook', linebotParser);
 
 
-
 const LOL_result = []; // 建立一個儲存結果的容器
 const Beauty_result = []; // 建立一個儲存結果的容器
 
@@ -71,9 +70,9 @@ const Dcard_webCrawler = function (_url,_posStartIndex,_posEndIndex,callb) {
         }
         const $ = cheerio.load(body); // 載入 body
 
-        const url_class = $(".PostList_wrapper_2BLUM"); // 爬外層的 (class=PostEntry_root_V6g0r)
-        const Like_class = $(".Like_counter_1enlP");//推數的class
-		const title_class = $(".PostEntry_title_H5o4d") //標題的class
+        const url_class = $(".PostList_entry_1rq5Lf"); // 爬外層的 (class=PostEntry_root_V6g0r)
+        const Like_class = $(".PostEntry__LikeCount-sc-140l15m-0 hlvyVg");//推數的class
+		const title_class = $(".PostEntry_content_g2afgv") //標題的class
 
 		
 		Dcardresult.length = 0;
@@ -308,7 +307,7 @@ bot.on('message', function (event) {
 
 		    var _all = pose.join('、').toString();
 
-		    event.reply(_all);
+		    event.reply(_all);	
 		}
 			
 
