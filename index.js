@@ -78,7 +78,7 @@ const Dcard_webCrawler = function (_url,_posStartIndex,_posEndIndex,callb) {
 		
 		Dcardresult.length = 0;
         for (let i = _posStartIndex ; i < _posEndIndex; i++) {
-            const title = title_class.eq(i).text();
+			const title = title_class.first().text();
             const url = url_class.eq(i).find('a').attr("href");
             const bbb = Like_class.eq(i).text();
             if (url != undefined) {
@@ -138,7 +138,7 @@ var myDictionary = {
 	'好':'好什麼好',
 	'幹':'留點口德啦幹你娘機掰',
 	'抽':'插',
-	'Test':'改一下結構 從開始到結束有參數規定',
+	'Test':'改一下結構 從開始到結束有參數規定'
 	
 };
 var allDictionary = [];
