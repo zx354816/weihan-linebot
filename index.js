@@ -72,13 +72,13 @@ const Dcard_webCrawler = function (_url,_posStartIndex,_posEndIndex,callb) {
 
         const url_class = $(".PostList_entry_1rq5Lf"); // 爬外層的 (class=PostEntry_root_V6g0r)
         const Like_class = $(".PostEntry_reactions_3bbr43");//推數的class
-		const title_class = $(".PostEntry_content_g2afgv"); //標題的class
+		const title_class = $(".PostEntry_title_H5o4dj PostEntry_unread_2U217-"); //標題的class
 		//const content_cass = $(".PostEntry_excerpt_2eHlNn");//內文的class
 
 		
 		Dcardresult.length = 0;
         for (let i = _posStartIndex ; i < _posEndIndex; i++) {
-			const title = title_class.first().text()+"123456789";
+			const title = title_class.text()+"123456789";
             const url = url_class.eq(i).find('a').attr("href");
             const bbb = Like_class.eq(i).text();
             if (url != undefined) {
