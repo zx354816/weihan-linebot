@@ -78,7 +78,7 @@ const Dcard_webCrawler = function (_url,_posStartIndex,_posEndIndex,callb) {
 		
 		Dcardresult.length = 0;
         for (let i = _posStartIndex ; i < _posEndIndex; i++) {
-			const title = title_class.text()+"123456789";
+			const title = title_class.eq(i).text()+"987654321";
             const url = url_class.eq(i).find('a').attr("href");
             const bbb = Like_class.eq(i).text();
             if (url != undefined) {
