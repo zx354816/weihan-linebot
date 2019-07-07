@@ -72,7 +72,8 @@ const Dcard_webCrawler = function (_url,_posStartIndex,_posEndIndex,callb) {
 
         const url_class = $(".PostList_entry_1rq5Lf"); // 爬外層的 (class=PostEntry_root_V6g0r)
         const Like_class = $(".PostEntry_reactions_3bbr43");//推數的class
-		const title_class = $(".PostEntry_excerpt_2eHlNn") //標題的class
+		const title_class = $(".PostEntry_content_g2afgv"); //標題的class
+		//const content_cass = $(".PostEntry_excerpt_2eHlNn");//內文的class
 
 		
 		Dcardresult.length = 0;
