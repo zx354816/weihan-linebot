@@ -83,7 +83,7 @@ const Dcard_webCrawler = function (_url,_posStartIndex,_posEndIndex,callb) {
 			const bbb = Like_class.eq(i).text();
 			const content = content_cass.eq(i).text();
             if (url != undefined) {
-                Dcardresult.push(bbb + "推 https://www.dcard.tw" + url + "\n內文：" + content);
+                Dcardresult.push(bbb + "推 https://www.dcard.tw" + url + "\n內文：" + content + "\n");
             }
         }
         if (typeof callb === 'function') {
