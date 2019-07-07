@@ -71,7 +71,7 @@ const Dcard_webCrawler = function (_url,_posStartIndex,_posEndIndex,callb) {
         const $ = cheerio.load(body); // 載入 body
 
         const url_class = $(".PostList_entry_1rq5Lf"); // 爬外層的 (class=PostEntry_root_V6g0r)
-        const Like_class = $(".PostEntry__LikeCount-sc-140l15m-0 hlvyVg");//推數的class
+        const Like_class = $(".PostEntry_reactions_3bbr43");//推數的class
 		const title_class = $(".PostEntry_excerpt_2eHlNn") //標題的class
 
 		
