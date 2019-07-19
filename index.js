@@ -103,13 +103,17 @@ function limitRandomNumber(n, m) {
 	return Math.floor(Math.random() * c + n);
 }
 
-
+/*
 var FoodList = ['巧味', '汕頭意麵', '歡歡', '來來軒', '影印店小籠包',
 	'昌平', '龍門客棧', '麥當勞', '肯德基', '拿坡里', '新永豆', '黑永豆',
 	'舊永豆', '胖老爹', '海之蚵', '佐賀', '飯鋪子', '紅豆', '福萱', '響樂',
 	'浪人鐵板燒', '九龍城', '鴨香麵', '八方雲集', '老先覺', '饌喜堂', '聖明自助餐',
 	'嘉鄰快餐', '吐司森林', '飯尾鰭', '海之柯', '再抽一次', '貢龜', '朝祥煮', 'Morning House',
 	'7-11', '小管炒飯', '海膽炒蛋', '德記，可是倒了', '烏龍大王，可是倒了', '葉伴食堂'];
+*/
+var FoodList =[];
+
+
 
 var pose = ['69式', '傳教式', '火車便當', '背入式', 'Oop式', '騎乘式', '活塞式', '口交', '毒龍鑽', '彎腰下狗式'];
 
@@ -204,13 +208,7 @@ bot.on('message', function (event) {
 	     跟餐廳有關的操作：隨機、新增、移除、查看
 	    */
 		else if (event.message.text.match('吃啥') || event.message.text.match('吃什麼') || event.message.text.match('吃甚麼') != null) {
-			fs.readFile("FoodList.txt", "utf8", function(err, file) {
-				var ListLength = file.length;
-				var foodlist = file.split(",");
-				
-				event.reply(foodlist[limitRandomNumber(0, ListLength - 1)]);
-			});
-			/*
+			
 			var ListLength = FoodList.length;
 			event.reply(FoodList[limitRandomNumber(0, ListLength - 1)]).then(function (data) {
 				// success 
@@ -219,7 +217,7 @@ bot.on('message', function (event) {
 				// error 
 				console.log('error');
 			});
-			*/
+			
 		}
 		else if (event.message.text.match('新增餐廳:') != null || event.message.text.match('新增餐廳：') != null) {
 
@@ -318,16 +316,18 @@ bot.on('message', function (event) {
 		}
 		else if (event.message.text == '全部的姿勢' || event.message.text == '所有姿勢') {
 
+			/*
 			fs.readFile("pose.txt", "utf8", function (err, file) {
 				var _all;
 				_all = file.replace(new RegExp(",", "g"), "、");
 				event.reply(_all);
 			});
+			*/
 
-			/*
+			
 			var _all = pose.join('、').toString();
 			event.reply(_all);	
-			*/
+			
 		}
 
 
