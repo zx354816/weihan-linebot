@@ -59,7 +59,7 @@ const PPT_webCrawler = function (_url,_posIndex,callb) {
 };
 
 const Dcardresult = [];
-const Dcard_webCrawler = function (_url,_posStartIndex,_posEndIndex,callb) {
+const Dcard_webCrawler = function (_url,_posStartIndex,_posEndIndex,callb) { 
 	
     request({
         url: _url,
@@ -154,7 +154,7 @@ bot.on('message', function (event) {
 	
 	
     else if (event.message.type == 'text') {
-		
+		//可以顯示貼圖，以後再新增
 		if(event.message.text.match('zz')!=null || event.message.text.match('ZZ')!=null){
 			
 			event.reply({
@@ -306,10 +306,12 @@ bot.on('message', function (event) {
 		    }
 		}
 		else if (event.message.text == '全部的姿勢' || event.message.text == '所有姿勢') {
+			fs.readFile("pose.txt", "utf8", function(err, file) {
+				var _all = file.join('、').toString();
+				event.reply(_all);
+			});
 
-		    var _all = pose.join('、').toString();
-
-		    event.reply(_all);	
+		    	
 		}
 			
 
