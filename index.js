@@ -306,13 +306,18 @@ bot.on('message', function (event) {
 		    }
 		}
 		else if (event.message.text == '全部的姿勢' || event.message.text == '所有姿勢') {
+			
 			fs.readFile("pose.txt", "utf8", function(err, file) {
-					//var _all = file.join('、').toString();
-					//event.reply(_all);
-					event.reply(file);
+        
+				var _all;
+				_all = file.replace(new RegExp(",", "g"),"、");
+				event.reply(_all);
 			});
-
-		    	
+			
+			/*
+			var _all = pose.join('、').toString();
+			event.reply(_all);	
+			*/
 		}
 			
 
