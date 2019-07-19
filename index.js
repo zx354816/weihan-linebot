@@ -205,8 +205,11 @@ bot.on('message', function (event) {
 	    */
 		else if (event.message.text.match('吃啥') || event.message.text.match('吃什麼') || event.message.text.match('吃甚麼') != null) {
 			fs.readFile("FoodList.txt", "utf8", function(err, file) {
+			}).then(function(){
+				
 				var ListLength = file.length;
 				var foodlist = file.split(",");
+				
 				event.reply(foodlist[limitRandomNumber(0, ListLength - 1)]);
 			});
 			/*
