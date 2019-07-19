@@ -307,8 +307,12 @@ bot.on('message', function (event) {
 		}
 		else if (event.message.text == '全部的姿勢' || event.message.text == '所有姿勢') {
 			fs.readFile("pose.txt", "utf8", function(err, file) {
-				var _all = file.join('、').toString();
-				event.reply(_all);
+				if(err){
+					event.reply("壞了");
+				}else{
+					var _all = file.join('、').toString();
+					event.reply(_all);
+				}
 			});
 
 		    	
