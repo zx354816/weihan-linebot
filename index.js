@@ -15,7 +15,6 @@ const app = express();
 
 const linebotParser = bot.parser();
 
-
 /*	測試Heroku平台的Node.js環境可以運作*/
 app.get('/', function (req, res) {
 	res.send('Hello World!');
