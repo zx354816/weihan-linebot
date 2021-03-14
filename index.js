@@ -114,7 +114,7 @@ var FoodList = ['巧味', '汕頭意麵', '歡歡', '來來軒', '影印店小�
 
 
 
-var pose = ['69式','傳教式','火車便當','背入式','Oop式','騎乘式','活塞式','口交','毒龍鑽','彎腰下狗式','高鐵便當','300號便當','高速充電寶','高速活塞','認真活塞','老漢推車','蕩劍式','直升機式'];
+var pose = ['69式', '傳教式', '火車便當', '背入式', 'Oop式', '騎乘式', '活塞式', '口交', '毒龍鑽', '彎腰下狗式', '高鐵便當', '300號便當', '高速充電寶', '高速活塞', '認真活塞', '老漢推車', '蕩劍式', '直升機式'];
 
 
 //第一個是key 第二個是值
@@ -206,7 +206,7 @@ bot.on('message', function (event) {
 	     跟餐廳有關的操作：隨機、新增、移除、查看
 	    */
 		else if (event.message.text.match('吃啥') || event.message.text.match('吃什麼') || event.message.text.match('吃甚麼') != null) {
-			
+
 			var ListLength = FoodList.length;
 			event.reply(FoodList[limitRandomNumber(0, ListLength - 1)]).then(function (data) {
 				// success 
@@ -215,7 +215,7 @@ bot.on('message', function (event) {
 				// error 
 				console.log('error');
 			});
-			
+
 		}
 		else if (event.message.text.match('新增餐廳:') != null || event.message.text.match('新增餐廳：') != null) {
 
@@ -231,7 +231,7 @@ bot.on('message', function (event) {
 					console.log('error');
 				});
 
-				
+
 			}
 			else {
 				event.reply('裡面已經有這個了啦').then(function (data) {
@@ -322,10 +322,10 @@ bot.on('message', function (event) {
 			});
 			*/
 
-			
+
 			var _all = pose.join('、').toString();
-			event.reply(_all);	
-			
+			event.reply(_all);
+
 		}
 
 
